@@ -1,0 +1,767 @@
+
+
+
+
+
+repeat task.wait() until game.Players.LocalPlayer
+repeat task.wait() until game.Players.LocalPlayer.Character
+repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("RemoteEvent")
+
+
+-- // Constants
+local MAIN_GAME_PLACE_ID = 2809202155
+local COLLESIUM_PLACE_ID = 5290908008
+local STEEL_BALL_RUN_ID = 4643697430
+local bebracity = 7406546700
+-- // Services
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local TeleportService  = game:GetService("TeleportService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+-- // Player
+local LocalPlayer = Players.LocalPlayer
+local PlayerGui = LocalPlayer.PlayerGui
+
+getgenv().empEnabled = true -- crasher
+getgenv().empStrength = 300 --sbr EMP, higher means they freeze more often, but they might get the disconnected godmode.
+getgenv().empDuration = 10 --sbr EMP, higher means it starts emp for longer
+getgenv().empFrequency = 15 --sbr EMP, seconds it take to start EMP again
+getgenv().resolveVelocity = 8 --3-8 recommended value, hard to explain
+
+
+task.spawn(function()
+    skipbug = true
+    while skipbug do wait(40)
+        if PlayerGui:FindFirstChild("LoadingScreen1") then
+            TeleportService:Teleport(MAIN_GAME_PLACE_ID)
+        else
+            skipbug = false
+        end
+    end
+end)
+
+local function bypass()
+    local TPBypass
+    TPBypass = hookfunction(getrawmetatable(game).__namecall, newcclosure(function(self, ...)
+    local args = {...}
+    if self.Name == "Returner" and args[1] == "idklolbrah2de"  then
+            return "  ___XP DE KEY"
+        end
+    return TPBypass(self, ...)
+    end))
+end
+
+local function skipScreen()
+    if not LocalPlayer.PlayerGui:FindFirstChild("HUD") then
+        print("I FOUND IT")
+        local HUD = game.ReplicatedStorage.Objects.HUD:Clone()
+        HUD.Parent = LocalPlayer.PlayerGui
+    end
+
+    print("I DID FOUND IT, MAYBE IT WILL WORK?")
+    LocalPlayer.Character.RemoteEvent:FireServer("PressedPlay")
+
+    if LocalPlayer.PlayerGui:FindFirstChild("LoadingScreen1") then
+        LocalPlayer.PlayerGui:FindFirstChild("LoadingScreen1"):Destroy()
+    end
+
+    if LocalPlayer.PlayerGui:FindFirstChild("LoadingScreen") then
+        LocalPlayer.PlayerGui:FindFirstChild("LoadingScreen"):Destroy()
+    end
+end
+
+
+local function maingame()
+    local function checkQuest()
+        hasDioQuest = false
+        currentQuest = "NaN"
+    
+        for _, quest in pairs(LocalPlayer.PlayerGui.HUD.Main.Frames:WaitForChild("Quest").Quests:GetChildren()) do
+            if string.find(quest.Name, "Dio's DIARY") then
+                hasDioQuest = true
+                currentQuest = quest.Name
+                break
+            end
+        end
+    end
+
+    local function SwapStand(Stand)
+        for _, v in pairs(LocalPlayer.PlayerStats:GetChildren()) do
+            if v.Name == "Slot1" or v.Name == "Slot2" or v.Name == "Slot3" then
+                if v then
+                    if v.Value == Stand then
+                        repeat task.wait()
+                            LocalPlayer.Character.RemoteEvent:FireServer("SwapStand", v.Name)
+                            LocalPlayer.PlayerGui.HUD.Main.DropMoney.Money.Text = "100"
+                        until LocalPlayer.Character.Humanoid.Health <= 5
+                    end
+                end
+            end
+        end
+    end
+
+    local function readDiary()
+        if LocalPlayer.PlayerStats.Stand.Value ~= "The World" then
+            local swappedSuccessfully = SwapStand("The World")
+        end
+        if LocalPlayer.Character.Health.Value > 20 then
+            local dioDiary = LocalPlayer.Backpack:WaitForChild("Dio's Diary", 5)
+            repeat task.wait()
+                LocalPlayer.Character.Humanoid:EquipTool(dioDiary) 
+                LocalPlayer.Character:FindFirstChild(dioDiary.Name):Activate()
+            until PlayerGui:FindFirstChild("DialogueGui")
+            if LocalPlayer.PlayerGui:WaitForChild("DialogueGui").Frame.DialogueFrame.Frame.Line001.Container.Group001.Text == "Wryyyy" then
+                repeat
+                    pcall(function()
+                        task.wait()
+                        firesignal(LocalPlayer.PlayerGui:FindFirstChild("DialogueGui").Frame.ClickContinue.MouseButton1Click)
+                        firesignal(LocalPlayer.PlayerGui:FindFirstChild("DialogueGui").Frame.Options.Option1.TextButton.MouseButton1Click)
+                    end)
+                until not LocalPlayer.PlayerGui:FindFirstChild("DialogueGui")
+		LocalPlayer.Character.Humanoid:UnequipTools()
+            end
+        end
+        checkQuest()
+    end
+
+    local function Quest()
+        checkQuest()
+        if string.find(currentQuest, 25) then
+            print("vers")
+            versus = true
+        elseif string.find(currentQuest, 50) then
+            print("sbr")
+            sbr = true
+        elseif string.find(currentQuest, "Dio's BONE") then
+            print("dio")
+            dioOh = true
+        elseif not hasDioQuest and LocalPlayer.Backpack:FindFirstChild("Dio's Bone") then
+            print("TWOH")
+            twoh = true
+        elseif not hasDioQuest then
+            readDiary()
+        end 
+    end
+    Quest()
+end
+
+local function doversus()
+
+    local function bugscheck()
+        print(1)
+        local function timercheck()
+            while game.PlaceId == COLLESIUM_PLACE_ID do task.wait()
+                if workspace:FindFirstChild("Message") and workspace.Message.Text == "The 1v1 match will begin in 1" and LocalPlayer.Name == getgenv().name then
+                    wait(5)
+                    if workspace:FindFirstChild("Message") and workspace.Message.Text == "The 1v1 match will begin in 1" then
+                        print("LEAVE")
+                        local TeleportService = game:GetService("TeleportService")
+                        TeleportService:Teleport(MAIN_GAME_PLACE_ID) 
+                    end
+                elseif workspace:FindFirstChild("Message") and workspace.Message.Text == "The 1v1 match will begin in 1" and LocalPlayer.Name == getgenv().altname then
+                    wait(5)
+                    if workspace:FindFirstChild("Message") and workspace.Message.Text == "The 1v1 match will begin in 1" then
+                        print("LEAVE")
+                        local TeleportService = game:GetService("TeleportService")
+                        TeleportService:Teleport(BEBRA_ID) 
+                    end     
+                end     
+            end
+        end
+    
+    
+        local function nogui()
+            while game.PlaceId == COLLESIUM_PLACE_ID do task.wait()
+                if not workspace:FindFirstChild("Message") and LocalPlayer.Name == getgenv().name then
+                    wait(20)
+                    local TeleportService = game:GetService("TeleportService")
+                    TeleportService:Teleport(MAIN_GAME_PLACE_ID) 
+                elseif not workspace:FindFirstChild("Message") and LocalPlayer.Name == getgenv().altname then
+                    wait(20)
+                    local TeleportService = game:GetService("TeleportService")
+                    TeleportService:Teleport(BEBRA_ID) 
+                end
+            end
+        end
+        task.spawn(nogui)
+        task.spawn(timercheck)
+    end
+    
+    local function joinversus()
+        while LocalPlayer.Name == getgenv().name and game.PlaceId == MAIN_GAME_PLACE_ID do wait(1)
+            repeat 
+                local Got = false
+                local Url = "https://games.roblox.com/v1/games/2809202155/servers/Public?sortOrder=Desc&limit=100" 
+                local Server = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/2809202155/servers/Public?sortOrder=Desc&limit=100")) 
+                AscServer = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/2809202155/servers/Public?sortOrder=Asc&limit=100")) 
+                if AscServer.data then 
+                    for i , search in ipairs(AscServer.data) do 
+                        for i , playerToken in ipairs(search.playerTokens) do 
+                            if playerToken == getgenv().alttoken then 
+                                print("Found2") 
+                                Got = true 
+                                local TeleportService = game:GetService("TeleportService")
+                                TeleportService:Teleport(COLLESIUM_PLACE_ID)    
+                            end 
+                        end 
+                    end 
+                end 
+                wait(0.2) 
+                while Server.nextPageCursor ~= nil do wait(0.5) 
+                    print(Server.nextPageCursor) 
+                    if Server.data then 
+                        for i , search in ipairs(Server.data) do 
+                            for i , playerToken in ipairs(search.playerTokens) do 
+                                if playerToken == getgenv().alttoken then 
+                                    print("Found") 
+                                    Got = true 
+                                    local TeleportService = game:GetService("TeleportService")
+                                    TeleportService:Teleport(COLLESIUM_PLACE_ID)    
+                                end 
+                            end 
+                        end 
+                    end 
+                    Server = game:GetService("HttpService"):JSONDecode(game:HttpGet(Url.."&cursor="..tostring(Server.nextPageCursor))) 
+                end 
+                wait(0.3)
+            until Got == true
+        end
+    end
+
+    local function altjoin()
+        while LocalPlayer.Name == getgenv().altname and game.PlaceId == MAIN_GAME_PLACE_ID do wait()
+            local serverURL = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/5290908008/servers/Public?sortOrder=Asc&limit=100"))
+            if serverURL.data then
+                for i , server in ipairs(serverURL.data) do
+                    for i , playerToken in ipairs(server.playerTokens) do
+                        if playerToken == getgenv().token then
+                            print("found".. playerToken)
+                            Id = server.id
+                            local TeleportService = game:GetService("TeleportService")
+                            TeleportService:TeleportToPlaceInstance(COLLESIUM_PLACE_ID, Id)
+                        end
+                    end
+                end 
+            end
+        end
+    end
+
+    local function mainVers()
+        while game.PlaceId == COLLESIUM_PLACE_ID do wait() 
+            if LocalPlayer.Name == getgenv().name then
+                wait(5)
+                if PlayerGui:WaitForChild("Lives").Frame:WaitForChild("Winner").Text ~= "The winner is UzuKee!" then
+                    local TeleportService = game:GetService("TeleportService")
+                    TeleportService:Teleport(MAIN_GAME_PLACE_ID)   
+                end
+            end
+        end 
+    end
+
+    local function altVersus()
+        while game.PlaceId == COLLESIUM_PLACE_ID do wait()
+            if PlayerGui:FindFirstChild("Lives") and LocalPlayer.Name == getgenv().altname then
+                local Http = game:GetService("HttpService")
+                local TPS = game:GetService("TeleportService")
+                local Api = "https://games.roblox.com/v1/games/"
+                local _place = MAIN_GAME_PLACE_ID
+                local _servers = Api.._place.."/servers/Public?sortOrder=asc&limit=100"
+                function ListServers(cursor)
+                local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+                return Http:JSONDecode(Raw)
+                end
+                
+                local Server, Next; repeat
+                local Servers = ListServers(Next)
+                Server = Servers.data[5]
+                Next = Servers.nextPageCursor
+                until Server
+                
+                TPS:TeleportToPlaceInstance(_place,Server.id,game:GetService('Players').LocalPlayer)   
+            end
+        end
+    end
+
+    task.spawn(function()
+        if game.PlaceId == COLLESIUM_PLACE_ID then wait(5)
+            for i,v in pairs(Players:GetChildren()) do
+                if v.Name ~= getgenv().altname and v.Name ~= getgenv().name then
+                    local TeleportService = game:GetService("TeleportService")
+                    TeleportService:Teleport(MAIN_GAME_PLACE_ID)             
+                end
+            end
+        end
+   end)
+
+   task.spawn(function()
+        if game.PlaceId == COLLESIUM_PLACE_ID then wait(5)
+            if LocalPlayer.Name == getgenv().altname and not Players:FindFirstChild(getgenv().name) then
+                local Http = game:GetService("HttpService")
+                local TPS = game:GetService("TeleportService")
+                local Api = "https://games.roblox.com/v1/games/"
+                local _place = MAIN_GAME_PLACE_ID
+                local _servers = Api.._place.."/servers/Public?sortOrder=asc&limit=100"
+                function ListServers(cursor)
+                local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+                return Http:JSONDecode(Raw)
+                end
+                
+                local Server, Next; repeat
+                local Servers = ListServers(Next)
+                Server = Servers.data[5]
+                Next = Servers.nextPageCursor
+                until Server
+                
+                TPS:TeleportToPlaceInstance(_place,Server.id,game:GetService('Players').LocalPlayer)  
+            end
+        end
+    end)
+
+
+    task.spawn(bugscheck)
+    task.spawn(altVersus)
+    task.spawn(joinversus)
+    task.spawn(altjoin)
+    task.spawn(mainVers)
+end
+
+local function mainSBR()
+
+    bypass()
+
+    local function aeroStats()
+        local function Aero()
+            for _, v in pairs(LocalPlayer.PlayerStats:GetChildren()) do
+                if v.Name == "Slot1" or v.Name == "Slot2" or v.Name == "Slot3" then
+                    if v then
+                        if v.Value == "Aerosmith" then
+                            repeat task.wait()
+                                LocalPlayer.Character.RemoteEvent:FireServer("SwapStand", v.Name)
+                                LocalPlayer.PlayerGui.HUD.Main.DropMoney.Money.Text = "100"
+                            until LocalPlayer.Character.Humanoid.Health <= 5
+                        end
+                    end
+                end
+            end
+        end
+        Aero()
+        LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Vitality X",["SkillTreeType"] = "Character"})
+        LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Destructive Power V",["SkillTreeType"] = "Stand"})
+        LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Time Stop Resistance",["SkillTreeType"] = "Stand"})
+        LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Anger Issues III",["SkillTreeType"] = "Stand"})
+        LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Constant Rage III",["SkillTreeType"] = "Stand"})
+        LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Artillery",["SkillTreeType"] = "Stand"})
+        LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Propeller Charge",["SkillTreeType"] = "Stand"})
+        LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Sharpness IX",["SkillTreeType"] = "Stand"})
+        LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Stocked Magazines",["SkillTreeType"] = "Stand"})
+        LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Little Boy",["SkillTreeType"] = "Stand"})
+        LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Vola Barrage",["SkillTreeType"] = "Stand"})
+        LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Pilot",["SkillTreeType"] = "Stand"})
+        LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Wingman",["SkillTreeType"] = "Stand"})
+        LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Stand Range I",["SkillTreeType"] = "Stand"})
+        LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Hamon Punch",["SkillTreeType"] = "Spec"})
+        LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Lung Capacity V", ["SkillTreeType"] = "Spec"})
+        LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Hamon Breathing V",["SkillTreeType"] = "Spec"})
+    end
+
+    task.spawn(function()
+        while game.PlaceId == STEEL_BALL_RUN_ID do wait(1)
+            for _, v in pairs(game:GetService("Workspace"):GetChildren()) do
+                if string.find(v.Name, getgenv().name) then
+                    v:Destroy()
+                end
+            end
+        end
+    end)
+
+ local function joinsbr()
+        LocalPlayer.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "[COMPETITIVE] Metal Ball Run", ["Option"] = "Option1",["Dialogue"] = "Dialogue2"})
+        local server = PlayerGui:WaitForChild("Metal Ball Run Servers"):WaitForChild("Frame"):WaitForChild("ScrollingFrame"):GetChildren()[math.random(1,2)]
+        local args = {
+            [1] = "JoinMetalBallRun",
+            [2] = {
+                ["Competitive"] = false,
+                ["Code"] = server.Text
+            }
+        }
+        LocalPlayer.Character.RemoteEvent:FireServer(unpack(args))
+    end
+
+    local function join()
+        if game.PlaceId == MAIN_GAME_PLACE_ID then
+            repeat
+                joinsbr()
+                task.wait(0.2)
+            until game.PlaceId ~= MAIN_GAME_PLACE_ID
+        elseif game.PlaceId == STEEL_BALL_RUN_ID then
+            task.spawn(function()
+                while game.PlaceId == STEEL_BALL_RUN_ID do task.wait(5)
+                    if #Players:GetChildren() <= 5 then
+                        local TeleportService = game:GetService("TeleportService")
+                        TeleportService:Teleport(MAIN_GAME_PLACE_ID)
+                    end
+                end
+            end)
+        end
+    end
+
+    local function sbrChecks() -- wait and stand summon
+        local function standcheck()
+            task.spawn(function()
+                while game.PlaceId == STEEL_BALL_RUN_ID do task.wait()
+                    if not LocalPlayer.Character:FindFirstChild("StandMorph") then
+                        local args = {
+                            [1] = "ToggleStand",
+                            [2] = "Toggle"
+                        }
+                        game:GetService("Players").LocalPlayer.Character.RemoteFunction:InvokeServer(unpack(args))
+                    end
+                end
+            end)
+        end
+
+        local function waitsbr()
+            while game.PlaceId == STEEL_BALL_RUN_ID and string.find(workspace:WaitForChild("Message").Text, "Metal Ball Run will commence") or string.find(workspace:WaitForChild("Message").Text, "COMMENCING") do wait(3)
+                LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2635, 499, -3894)
+            end
+        end
+        standcheck()
+        waitsbr()
+    end
+
+    
+    local function crash()
+        if game.PlaceId == STEEL_BALL_RUN_ID then
+            LocalPlayer = game:GetService("Players").LocalPlayer
+            local crashArguments = {
+                [1] = "Bleed",
+                [2] = {
+                    ["TotalDamage"] = 0.0001,
+                    ["Duration"] = 1
+                }
+            }
+
+            for _,v in pairs(getconnections(game.ReplicatedStorage.ClientFX.OnClientEvent)) do
+                v:Disable()
+            end
+
+            task.spawn(function()
+                while getgenv().empEnabled do
+                    crashArguments[2]["Duration"] = getgenv().empDuration
+                    for _ = getgenv().empStrength, 1, -1 do
+                        print("crash")
+                        LocalPlayer.Character.RemoteEvent:FireServer(unpack(crashArguments))
+                    end
+                    task.wait(getgenv().empFrequency)
+                end
+            end)
+        end
+    end
+
+    
+    local function Kill()
+        spawn(function()      
+        healthLimit = 0.4
+        local AutoKill = true
+            while AutoKill do task.wait()
+                for i,v in next, workspace.Living:GetChildren() do
+                    if v:FindFirstChild("Health") and v.Humanoid.Health >= healthLimit and v.Name ~= LocalPlayer.Name then
+                        while v and v.Humanoid.Health >= healthLimit do
+                        task.wait()
+                        LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame + Vector3.new(0, -40,0)
+                        LocalPlayer.Character.StandMorph.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame + (v.HumanoidRootPart.Velocity / 6)
+                        end
+                        v:Destroy()
+                    end
+                end
+            end
+        end)
+    end
+
+    task.spawn(function()
+    wait(30)
+        while game.PlaceId == STEEL_BALL_RUN_ID do task.wait(0.3)
+            pcall(function()
+                firetouchinterest(LocalPlayer.Character.StandMorph.Propellers, NPC.HumanoidRootPart, 1)
+                firetouchinterest(LocalPlayer.Character.StandMorph.Propellers, NPC.HumanoidRootPart, 0)
+            end)
+        end
+    end)
+
+    local function SbrKill()
+        while game.PlaceId == STEEL_BALL_RUN_ID do wait(1)
+            if not workspace:FindFirstChild("Barrier") then
+                Kill()
+            end
+        end
+    end
+
+    local function Punch()
+        spawn(function()
+            if game.PlaceId == STEEL_BALL_RUN_ID then
+                i = 1
+                while i == 1 do task.wait(0.1)
+
+                    wait(0.2)
+                    local args = {
+                        [1] = "InputBegan",
+                        [2] = {
+
+
+                            
+                            ["Input"] = Enum.KeyCode.G
+                        }
+                    }
+                    wait(0.1)
+                    game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer(unpack(args))
+                    local args = {
+                        [1] = "InputEnded",
+                        [2] = {
+                            ["Input"] = Enum.KeyCode.G
+                        }
+                    }
+                
+                    game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer(unpack(args))
+
+                    --skill1
+                    wait(0.2)
+                    local args = {
+                        [1] = "InputBegan",
+                        [2] = {
+
+
+                            
+                            ["Input"] = Enum.KeyCode.E
+                        }
+                    }
+                    
+                    game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer(unpack(args))
+                    local args = {
+                        [1] = "InputEnded",
+                        [2] = {
+                            ["Input"] = Enum.KeyCode.E
+                        }
+                    }
+                
+                    game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer(unpack(args))
+                    wait(0.2)
+                    --skill2
+                    local args = {
+                        [1] = "InputBegan",
+                        [2] = {
+
+
+                            
+                            ["Input"] = Enum.KeyCode.T
+                        }
+                    }
+                    
+                    game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer(unpack(args))
+                    local args = {
+                        [1] = "InputEnded",
+                        [2] = {
+                            ["Input"] = Enum.KeyCode.T
+                        }
+                    }
+                
+                    game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer(unpack(args))
+                    wait(0.2)
+                    local args = {
+                        [1] = "InputBegan",
+                        [2] = {
+
+
+                            
+                            ["Input"] = Enum.KeyCode.R
+                        }
+                    }
+                    
+                    game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer(unpack(args))
+                    local args = {
+                        [1] = "InputEnded",
+                        [2] = {
+                            ["Input"] = Enum.KeyCode.R
+                        }
+                    }
+                
+                    game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer(unpack(args))
+                end
+            end
+        end)
+    end
+
+    task.spawn(aeroStats)
+    task.spawn(sbrChecks)
+    task.spawn(join)
+    task.spawn(SbrKill)
+    task.spawn(Punch)
+    task.spawn(crash)
+end
+
+local function dio()
+    bypass()
+
+    task.spawn(function()
+        while game.PlaceId == MAIN_GAME_PLACE_ID do wait(5)
+            if LocalPlayer.Backpack:FindFirstChild("Dio's Bone") then
+                local TeleportService = game:GetService("TeleportService")
+                TeleportService:Teleport(MAIN_GAME_PLACE_ID) 
+            end
+        end
+    end)
+
+    task.spawn(function()
+        while dioOh do wait(20)
+            LocalPlayer.Character.RemoteEvent:FireServer("EndDialogue",{["NPC"] = "Path to Heaven",["Option"] = "Option1",["Dialogue"] = "Dialogue8"})
+            LocalPlayer.Character.RemoteEvent:FireServer("EndDialogue",{["NPC"] = "Path to Heaven",["Option"] = "Option1",["Dialogue"] = "Dialogue6"})
+		local args = {
+    	[1] = "EndDialogue",
+    	[2] = {
+        	["NPC"] = "Heaven Ascension Dio Quest",
+        	["Option"] = "Option1",
+        	["Dialogue"] = "Dialogue5"
+    		}
+	}
+
+	game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer(unpack(args))
+
+
+        end
+    end)
+
+    LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Vitality X",["SkillTreeType"] = "Character"})
+    LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Destructive Power V",["SkillTreeType"] = "Stand"})
+    LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Time Stop Resistance",["SkillTreeType"] = "Stand"})
+    LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Anger Issues III",["SkillTreeType"] = "Stand"})
+    LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Constant Rage III",["SkillTreeType"] = "Stand"})
+    LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Artillery",["SkillTreeType"] = "Stand"})
+    LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Propeller Charge",["SkillTreeType"] = "Stand"})
+    LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Sharpness IX",["SkillTreeType"] = "Stand"})
+    LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Stocked Magazines",["SkillTreeType"] = "Stand"})
+    LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Little Boy",["SkillTreeType"] = "Stand"})
+    LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Vola Barrage",["SkillTreeType"] = "Stand"})
+    LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Pilot",["SkillTreeType"] = "Stand"})
+    LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Wingman",["SkillTreeType"] = "Stand"})
+    LocalPlayer.Character.RemoteFunction:InvokeServer("LearnSkill", {["Skill"] = "Stand Range I",["SkillTreeType"] = "Stand"})
+
+    task.spawn(function()
+        wait(330)
+        local TeleportService = game:GetService("TeleportService")
+        TeleportService:Teleport(MAIN_GAME_PLACE_ID)
+    end)
+
+
+    getgenv().AutoKill = true
+    local function Kill()
+        spawn(function()
+            while AutoKill do
+                for i,v in next, game:GetService("Workspace").Living:GetChildren() do
+                    if v.Name == "Heaven Ascension Dio" then
+                        while AutoKill do
+                        task.wait()
+                        LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame + Vector3.new(0, 40,0)
+                        LocalPlayer.Character.StandMorph.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame + Vector3.new(-2, 0,0)
+                        end
+                    end
+                end
+            end
+        end)
+    end
+
+    task.spawn(function()
+        while dioOh do task.wait()
+            Kill()
+        end
+    end)
+
+    local function PunchDio()
+        while dioOh do task.wait()
+            if LocalPlayer.Character:FindFirstChild("StandMorph") and LocalPlayer.Character.Hamon.Value > 30 then
+            LocalPlayer.Character.RemoteFunction:InvokeServer("Attack", "m1")
+            local args = {
+                [1] = "InputBegan",
+                [2] = {
+                    ["Input"] = Enum.KeyCode.H
+                }
+            }
+            game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer(unpack(args))
+            end
+            if not LocalPlayer.Character:FindFirstChild("StandMorph") then
+                local args = {
+                    [1] = "ToggleStand",
+                    [2] = "Toggle"
+                }
+                game:GetService("Players").LocalPlayer.Character.RemoteFunction:InvokeServer(unpack(args))
+            end
+            if LocalPlayer.Character.Hamon.Value < 30 then
+                LocalPlayer.Character.RemoteFunction:InvokeServer("AssignSkillKey", {["Type"] = "Spec",["Key"] = "Enum.KeyCode.L",["Skill"] = "Hamon Charge"})
+                LocalPlayer.Character.RemoteEvent:FireServer("InputBegan", {["Input"] = Enum.KeyCode.L})
+            end
+        end
+    end
+    PunchDio()
+end
+
+
+
+
+while game.PlaceId == MAIN_GAME_PLACE_ID do wait(10)
+    skipScreen()
+    bypass()
+    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1000,0,600)
+    wait(6)
+    maingame()
+    while versus do wait()
+        print("vers")
+        doversus()
+	wait(120)
+    end
+
+    if sbr then wait()
+        print("sbr)")
+        mainSBR()
+    end
+    while dioOh do wait()
+        print("dio")
+        dio()
+    end
+    if twoh then wait()
+        wait(5)
+        local dioDiary = LocalPlayer.Backpack:WaitForChild("Dio's Diary", 5)
+        repeat task.wait()
+            LocalPlayer.Character.Humanoid:EquipTool(dioDiary) 
+            LocalPlayer.Character:FindFirstChild(dioDiary.Name):Activate()
+        until PlayerGui:FindFirstChild("DialogueGui")
+        if LocalPlayer.PlayerGui:WaitForChild("DialogueGui").Frame.DialogueFrame.Frame.Line001.Container.Group001.Text == "Wryyyy" then
+            repeat
+                pcall(function()
+                    task.wait()
+                    firesignal(LocalPlayer.PlayerGui:FindFirstChild("DialogueGui").Frame.ClickContinue.MouseButton1Click)
+                    firesignal(LocalPlayer.PlayerGui:FindFirstChild("DialogueGui").Frame.Options.Option1.TextButton.MouseButton1Click)
+                end)
+            until not LocalPlayer.PlayerGui:FindFirstChild("DialogueGui")
+        end
+
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-269.532166, 284.199188, 321.046051, -1, 1.20316983e-08, 0.000232895283, 1.20465922e-08, 1, 6.3950786e-08, -0.000232895283, 6.39535926e-08, -1)
+        local args = {
+            [1] = "ToggleStand",
+            [2] = "Toggle"
+        }
+        game:GetService("Players").LocalPlayer.Character.RemoteFunction:InvokeServer(unpack(args))
+        wait(25)
+        local TeleportService = game:GetService("TeleportService")
+        TeleportService:Teleport(MAIN_GAME_PLACE_ID)
+
+    end
+end
+
+if game.PlaceId == STEEL_BALL_RUN_ID then
+    mainSBR()
+end
+
+if game.PlaceId == COLLESIUM_PLACE_ID then
+    print("ver")
+    doversus()
+end
