@@ -1,284 +1,68 @@
+local part = Instance.new("Part")
+part.Anchored = true
+part.Size = Vector3.new(20,1,20)
+part.Parent = workspace
+part.Position = Vector3.new(-3237.42627, 260.014404, 4506.54053)
 
+local part = Instance.new("Part")
+part.Anchored = true
+part.Size = Vector3.new(100,1,100)
+part.Parent = workspace
+part.Position = Vector3.new(-3237.42627, 280.014404, 4506.54053)
 
+local part = Instance.new("Part")
+part.Anchored = true
+part.Size = Vector3.new(10,1,10)
+part.Parent = workspace
+part.Position = Vector3.new(-3239.97119, 260.9758129, 4360.7793)
 
--- // Constants
-local MAIN_GAME_PLACE_ID = 2809202155
-local COLLESIUM_PLACE_ID = 5290908008
-local STEEL_BALL_RUN_ID = 4643697430
+local part = Instance.new("Part")
+part.Anchored = true
+part.Size = Vector3.new(20,1,20)
+part.Parent = workspace
+part.Position = Vector3.new(-3239.97119, 275.9758129, 4360.7793)
 
--- // Services
-local Players = game:GetService("Players")
-local Workspace = game:GetService("Workspace")
+local teleport_table = {
+    location1 = Vector3.new(-3237.42627, 265.014404, 4506.54053), -- your desired position
+    location3 = Vector3.new(-3693.83105, 225.1677666, 433.253265), -- your desired position
+    location2 = Vector3.new(-283.545013, 315.395447, 1660.81482), -- your desired position
+    location4 = Vector3.new(-3239.97119, 270.9758129, 4360.7793),
+}
+
+local tween_s = game:GetService('TweenService')
+local lp = game.Players.LocalPlayer
+
+local function bypass_teleport(v,time)
+    local tweeninfo = TweenInfo.new(time,Enum.EasingStyle.Linear)
+    if lp.Character and 
+    lp.Character:FindFirstChild('HumanoidRootPart') then
+        local cf = CFrame.new(v)
+        local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
+        a:Play()
+        a.Completed:Wait()
+        print('Teleporting Done!')
+    end
+end
+
+bypass_teleport(teleport_table.location1, 90)
+
+local args = {
+    [1] = "true"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("ShipEvents"):WaitForChild("Spawn"):InvokeServer(unpack(args))
+
+task.spawn(function()
+    while true do task.wait()
+        bypass_teleport(teleport_table.location4, 5)
+    end
+end)
+
+repeat task.wait() until lp.PlayerGui.BossHP.Main:FindFirstChild("Kraken")
+
 local VirtualInputManager = game:GetService("VirtualInputManager")
-local TeleportService  = game:GetService("TeleportService")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local LocalPlayer = Players.LocalPlayer
-local PlayerGui = LocalPlayer.PlayerGui
+VirtualInputManager:SendKeyEvent(true,"Four",false,game)
 
 
-
-
-task.spawn(function()
-    local fuckingskipbug = true
-    if fuckingskipbug then 
-        wait(30)
-        if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("LoadingScreen1") then
-            game:GetService("TeleportService"):Teleport(2809202155, game:GetService("Players").LocalPlayer)
-            fuckingskipbug = false
-        end
-    end
-end)
-
-task.spawn(function()
-    local IAMGOINGINSANEFROMYOU = true
-    while IAMGOINGINSANEFROMYOU do task.wait(1)
-        for _,v in pairs(game.LogService:GetLogHistory()) do
-            if string.find(v["message"], "BEGAN") or string.find(v["message"], "bruh") then
-                game:GetService("TeleportService"):Teleport(2809202155, game:GetService("Players").LocalPlayer)
-                IAMGOINGINSANEFROMYOU = false
-            end
-        end
-    end
-end)
-
-repeat task.wait() until game.Players.LocalPlayer
-repeat task.wait() until game.Players.LocalPlayer.Character
-repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("RemoteEvent")
-
-
-local function bypass()
-
-    -- TP BYPASS
-
-    local TPBypass 
-    TPBypass = hookfunction(getrawmetatable(game).__namecall, newcclosure(function(self, ...) 
-    local args = {...} 
-    if self.Name == "Returner" and args[1] == "idklolbrah2de"  then 
-            return "  ___XP DE KEY" 
-        end 
-    return TPBypass(self, ...) 
-    end)) 
- 
-    -- ITEM SPAWN BYPASS
-
-    local repFirst = game.GetService(game, 'ReplicatedFirst'); 
-    local itemSpawn = repFirst.ItemSpawn; 
- 
-    local vector3Metatable = getrawmetatable(Vector3.new()); 
-    local oldIndex = rawget(vector3Metatable, '__index'); 
- 
-    setreadonly(vector3Metatable, false); do 
-        vector3Metatable.__index = newcclosure(function(self, idx) 
-            if(string.lower(idx) == 'magnitude' and getcallingscript() == itemSpawn) then 
-                return 0; 
-            end; 
-            return oldIndex(self, idx); 
-        end); 
-    end; setreadonly(vector3Metatable, true); 
-end 
-
-bypass()
-
-task.wait(1)
-
- 
-local function skipScreen() -- AUTOSKIP
-    if not LocalPlayer.PlayerGui:FindFirstChild("HUD") then 
-        local HUD = game.ReplicatedStorage.Objects.HUD:Clone() 
-        HUD.Parent = LocalPlayer.PlayerGui 
-    end 
- 
-    LocalPlayer.Character.RemoteEvent:FireServer("PressedPlay") 
- 
-    if LocalPlayer.PlayerGui:FindFirstChild("LoadingScreen1") then 
-        LocalPlayer.PlayerGui:FindFirstChild("LoadingScreen1"):Destroy() 
-    end 
- 
-    if LocalPlayer.PlayerGui:FindFirstChild("LoadingScreen") then 
-        LocalPlayer.PlayerGui:FindFirstChild("LoadingScreen"):Destroy() 
-    end 
-end 
-
-local function Hop()
-    local t = {}
-
-    local Got = false
-    local Url = "https://games.roblox.com/v1/games/2809202155/servers/Public?sortOrder=Desc&limit=100" 
-    local Server = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/2809202155/servers/Public?sortOrder=Desc&limit=100")) 
-
-    AscServer = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/2809202155/servers/Public?sortOrder=Asc&limit=100")) 
-    if AscServer.data then 
-        for i , server2 in pairs(AscServer.data) do
-            t[#t+1] = server2.id
-        end 
-    end 
-    task.wait(0.1) 
-
-    local ID = t[math.random(1,#t)]
-
-    local TeleportService = game:GetService("TeleportService")
-    TeleportService:TeleportToPlaceInstance(MAIN_GAME_PLACE_ID, ID)
+while lp.PlayerGui.BossHP.Main:FindFirstChild("Kraken") do task.wait(1)
+    VirtualInputManager:SendKeyEvent(true,"Z",false,game)
 end
-
-
-local function GetHamon()
-
-    local function CheckHamon()
-        HaveHamon = false
-        for i, v in pairs(LocalPlayer:WaitForChild("PlayerStats"):GetChildren()) do
-            if v.Value == "Haaamon (Jonathan Joestar)" then
-                HaveHamon = true
-            end
-        end
-    end
-
-    CheckHamon()
-
-    local function FarmHeadband()
-
-        local function CheckItems()
-            CheckHamon()
-            while HaveHamon == false do 
-                CheckHamon()
-    
-                Stay = false
-    
-                for i, v in pairs(Workspace:GetChildren()) do
-                    if v.Name == "ProximityPrompt" and v.ObjectText == "Lucky Arrow" then
-                        if v then
-                            Stay = true
-                            print("Zeppelin")
-                        end
-                    end
-                end
-
-                task.spawn(function()
-                    wait(40)
-                    Hop()   
-                end)
-                
-
-                if Stay == true then
-                    bypass()
-                    wait(7)
-                    
-                    for i,v in next, Workspace.Item_Spawns.Items:GetChildren() do 
-                        if v:IsA("Model") and v:FindFirstChild("MeshPart") and v.ProximityPrompt.ObjectText == "Lucky Arrow" then 
-                            if v then 
-                                pcall(function()                          
-                                    while v.MeshPart:FindFirstChild("PointLight") do task.wait() 
-                                        print(v.MeshPart.CFrame) 
-                                        task.spawn(function() 
-                                            while true do task.wait() 
-                                                LocalPlayer.Character.HumanoidRootPart.CFrame = v.MeshPart.CFrame + Vector3.new(0,0,0) 
-                                            end 
-                                        end) 
-                                        wait(0.5) 
-                                        fireproximityprompt(v.ProximityPrompt) 
-                                        wait(0.5) 
-                                    end 
-                                end) 
-                            end 
-                        end
-                    end 
-                else
-                    Hop()
-                end
-            end
-        end
-        CheckItems()
-    end
-    FarmHeadband()
-end
-
-
-task.spawn(function()
-
-    getgenv().shit = {
-        render = true,
-        fpscap = 15,
-        Webhook = 'https://discord.com/api/webhooks/1223767987966709912/p-2wpnvC4CupPHTR0VUtqIyM8AxzdbJ530gpwZx9gMzcmHFfQxVzpnvU1nubf3ZLuKWd',
-        alts = {
-            "AccountName1",
-            "AccountName2"
-        }
-    }
-
-    function getArrows()
-		local arrows = 0
-		for i,v in ipairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-			if v.Name == 'Lucky Arrow' then
-				arrows = arrows + 1
-			end
-		end
-		return tostring(arrows)
-	end
-
-
-    function webhook(text,url)
-        request({
-            Url = url,
-            Method = "POST",
-            Headers = {["content-type"] = "application/json" },
-            Body = game:GetService('HttpService'):JSONEncode({
-                ["content"] = "",
-                ["embeds"] = {{
-                    ["title"] = text,
-                    ["description"] = "",
-                    ["type"] = "rich",
-                    ["color"] = tonumber(0xA1C3A9),
-                    ["fields"] = {
-                        {
-                            ["name"] = "Account:",
-                            ["value"] = game.Players.LocalPlayer.Name,
-                            ["inline"] = false
-                        },
-                        {
-                            ["name"] = "Arrows:",
-                            ["value"] = getArrows(),
-                            ["inline"] = false
-                        },
-                        {
-                            ["name"] = "Players:",
-                            ["value"]= #game:GetService("Players"):GetPlayers(),
-                            ["inline"] = false,
-                        },
-                    },
-                }}
-            })
-        })
-    end
-
-
-    game.Players.LocalPlayer.Backpack.ChildAdded:Connect(function(child)
-        if child.Name == "Lucky Arrow" then
-            webhook("**"..child.Name.." found!**",shit.Webhook)
-        end
-    end)
-end)
-
-skipScreen()
-GetHamon()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
