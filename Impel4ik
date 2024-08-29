@@ -1,7 +1,7 @@
 
 
 
-getgenv().VipServer = "AVCcpbec2M" --impel
+
 
 
 repeat task.wait() until game:IsLoaded()
