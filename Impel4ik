@@ -7,26 +7,7 @@ task.spawn(function()
 end)
 repeat task.wait() until game:IsLoaded()
 
---VIP SETTINGS
-getgenv().VipServer = "AVCcpbec2M" --impel
-getgenv().vipcode = "" -- trade
 
---IMPEL SETTINGS
-
-getgenv().iwantyourWebhook = "https://discord.com/api/webhooks/1271198705713680465/Hbmn0WxCqbMNHhZqhSKad8ygVBZOejfc5RTc8ya3cle68_oc4SrdPQJfwpJIuc784efZ" -- (вебхук ссылка) вебхук для пингов
-getgenv().autodrop = false 
-getgenv().bomjcap = 0 
-getgenv().pingonchests = true 
-getgenv().legchest = false
-getgenv().kolhoz = true
-getgenv().kolhoztime = 40
-getgenv().norender = true
-
-
---NEW! tradehuber settings
-getgenv().tradehuber = false
-getgenv().tradehuberspeed = 30
-getgenv().tradehuberpings = false
 
 --OBFUSCATION ZONE
 
