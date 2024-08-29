@@ -3159,7 +3159,7 @@ else
 
 
 		--task.wait(10)
-        task.wait(25)
+        --task.wait(25)
 
 
 		print("here you are")
@@ -3194,7 +3194,7 @@ else
              
              while game.PlaceId == MAIN_GAME_PLACE_ID do task.wait(1) print(11)
                  getgenv().speedvalue = 35 
-                 pcall(function()
+                 --pcall(function()
                      while (LocalPlayer.Character.HumanoidRootPart.Position - workspace.ImpelJoinPart.Position).Magnitude > 10 do task.wait(1)
                          Tween_Target(CFrame.new(5880.40527, 9.257061, -10213.2119))
                      end
@@ -3202,7 +3202,7 @@ else
                      wait(20)
              
                      LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5880.40527, 35.257061, -10213.2119)
-                 end)
+                 --end)
              end 
         end
 
@@ -3739,5 +3739,3 @@ else
 	end	 
 
 end
-
-
