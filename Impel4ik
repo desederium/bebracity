@@ -5,11 +5,7 @@ task.spawn(function()
             game:GetService("VirtualInputManager"):SendMouseButtonEvent(1, 1, 0, false, game, 0)
   end
 end)
-repeat task.wait() until game:IsLoaded()
 
-
-
---OBFUSCATION ZONE
 
 -- // Services
 local Players = game:GetService("Players")
@@ -43,6 +39,11 @@ switch = true
 LOBBY_PLACE_ID = 1730877806
 MAIN_GAME_PLACE_ID = 7465136166
 IMPEL_PLACE_ID = 11424731604
+local function dash()
+
+    local args = {[1] = 6,[2] = "dash"}
+    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("takestam"):FireServer(unpack(args))
+end
 
 --// Player
 local LocalPlayer = Players.LocalPlayer
@@ -57,6 +58,63 @@ end
 
 print("hey you are using IMPEL DOWN SCRIPT V"..vers.." #NOWHITELIST ^-^ , say thanks to  @kequask @divinityd @DENZEK @geralt6234")
 --firesignal(game.Players.LocalPlayer.PlayerGui.DiffChooser.Frame.ScrollingFrame.Nightmare.MouseButton1Click)
+
+local function Tween_Target(target,wait,high,mines)
+
+    repeat task.wait() until game.Players.LocalPlayer.Character
+
+    repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")	
+
+    local dest
+
+    if typeof(target) == "Vector3" then
+        dest = target
+    elseif typeof(target) == "Instance" and target.Position or typeof(target) == "CFrame" and target.Position then
+        dest = target.Position
+    else
+        return
+    end
+    if not LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity") then
+        local bv = Instance.new("BodyVelocity", game.Players.LocalPlayer.Character.HumanoidRootPart) 
+        bv.velocity = Vector3.new(0,0,0) 
+        bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
+    end
+
+    local speed = tonumber((target.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude)
+    local time = speed/getgenv().speedvalue
+    local Tween_info = TweenInfo.new(time, Enum.EasingStyle.Linear)
+
+    local tween
+
+    if high and high > 1 and mines == nil then
+        tween = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, Tween_info, {CFrame = CFrame.new(Vector3.new(target.Position.X, target.Position.Y+high, target.Position.Z))})
+    elseif high and high > 1 and mines == true then
+        tween = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, Tween_info, {CFrame = CFrame.new(Vector3.new(target.Position.X, 0+high, target.Position.Z))})
+    elseif high and high == 0 then
+        local dis = tonumber((Vector3.new(target.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y, target.Position.Z) - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude)
+        local t = dis/getgenv().speedvalue
+        tween = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(t, Enum.EasingStyle.Linear), {CFrame = CFrame.new(Vector3.new(target.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y, target.Position.Z))})
+    elseif not high then
+        tween = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, Tween_info, {CFrame = CFrame.new(Vector3.new(target.Position.X, target.Position.Y, target.Position.Z))})
+    end
+
+    tween.Name = ("teleport")
+    tween.Parent = fold
+
+    DoTween = true
+
+    tween:Play()
+
+    if wait == true and not high then
+        task.wait(Tween_info.Time)
+    elseif high and high == 0 then
+        local dis = tonumber((Vector3.new(target.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y, target.Position.Z) - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude)
+        local t = dis/getgenv().speedvalue
+        task.wait(t)
+    elseif wait == true and high and high ~= 0 then
+        task.wait(Tween_info.Time)
+    end
+end
 
 
 if getgenv().tradehuber == true then
@@ -3101,62 +3159,14 @@ else
 
 
 		--task.wait(10)
-		if getgenv().kolhoz == true then
-			task.wait(getgenv().kolhoztime)
-		else
-			local loaded = false
+        task.wait(25)
 
-			game.Players.LocalPlayer.CharacterAdded:Connect(function()
-				print("NIGGERS")
-				loaded = true
-			end)
-
-			repeat task.wait() until loaded == true
-
-		end
-
-		if getgenv().checkblegleg == true then
-			if not game.Players.LocalPlayer.Backpack:FindFirstChild("BlackLeg") then
-				repeat task.wait(3)
-					local args = {[1] = "BlackLeg"}
-					game:GetService("ReplicatedStorage").Events.learnStyle:FireServer(unpack(args))
-				until game.Players.LocalPlayer.Backpack:FindFirstChild("BlackLeg")
-
-				game.Players.LocalPlayer.PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("25") task.wait(1)
-				firesignal(game.Players.LocalPlayer.PlayerGui.Statistics.Main.Stats.FightingStyleMastery.Add.MouseButton1Click)
-			else
-				print("you have blackleg")
-			end
-		end
-
-		task.wait(5)
 
 		print("here you are")
 
-		local function TpBypass()
-			while true do task.wait()
-				local succ, err =pcall(function()
-					local args = {
-						[1] = "Concasser",
-						[2] = {
-							["char"] = game:GetService("Players").LocalPlayer.Character,
-							["t"] = 1,
-							["en2"] = game.Players.LocalPlayer.Character.PrimaryPart.CFrame,
-							["x0"] = game.Players.LocalPlayer.Character.PrimaryPart.CFrame,
-							["v0"] = game.Players.LocalPlayer.Character.PrimaryPart.CFrame,
-							["nt"] = 0,
-							["g"] = game.Players.LocalPlayer.Character.PrimaryPart.CFrame
-						}
-					}
-					game:GetService("ReplicatedStorage").Events.Skill:InvokeServer(unpack(args)) task.wait(5.5)
-				end)
-			end
-		end
-
-		task.spawn(TpBypass)
 
 		local function JoinImpel()
-    
+            print("fuck")
             task.spawn(function()
                 while true do task.wait(0.7)
                     pcall(function()
