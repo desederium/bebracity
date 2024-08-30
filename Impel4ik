@@ -2185,7 +2185,7 @@ else
             
                                         while workspace.NPCs:FindFirstChild("Boss") and LocalPlayer.Character:FindFirstChild("Aura") do task.wait()
                                             pcall(function()
-                                                if not target.HumanoidRootPart:FindFirstChild("BodyVelocity") then print("DO m1") wait()
+                                                if not target.HumanoidRootPart:FindFirstChild("BodyVelocity") then print("DO m1") task.wait()
                                                     pcall(function()
                                                         M1()
                                                     end)
