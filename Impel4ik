@@ -3135,6 +3135,7 @@ else
                 Stage1()
                 Stage2()
                 Stage3() 
+				--[[
                 task.spawn(function()
                     while true do task.wait(1)
                         pcall(function()
@@ -3146,6 +3147,7 @@ else
                         end)
                     end
                 end)
+				]]--
                 Stage4()
                 Stage5() 
             end
