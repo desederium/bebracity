@@ -2193,6 +2193,18 @@ else
                                             end)
                                         end
 					end)
+
+					task.spawn(function()
+						 while workspace.NPCs:FindFirstChild("Boss") and LocalPlayer.Character:FindFirstChild("Aura") do task.wait()
+                                            pcall(function()
+                                                if not target.HumanoidRootPart:FindFirstChild("BodyVelocity") then print("DO m1") task.wait()
+                                                    pcall(function()
+                                                        M1()
+                                                    end)
+                                                end
+                                            end)
+                                        end
+					end)
             
                                         while workspace.NPCs:FindFirstChild("Boss") and LocalPlayer.Character:FindFirstChild("Aura") do task.wait()
                                             pcall(function()
@@ -3109,14 +3121,6 @@ else
                             local args = {[1] = true,[2] = "Melee",[3] = true}
                             game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Block"):InvokeServer(unpack(args))
                         end)
-                    end
-                end)
-        
-                task.spawn(function()
-                    while true do task.wait()
-                        if #game:GetService("Players").LocalPlayer.PlayerGui.Notifications.Frame:GetChildren() > 2 then task.wait(0.5)
-                            dash()
-                        end
                     end
                 end)
         
