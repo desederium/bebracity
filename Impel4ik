@@ -1,3 +1,24 @@
+getgenv().VipServer = "AVCcpbec2M" --impel
+getgenv().vipcode = "" -- trade
+
+--IMPEL SETTINGS
+
+getgenv().iwantyourWebhook = "" -- (вебхук ссылка) вебхук для пингов
+getgenv().autodrop = false 
+getgenv().bomjcap = 0 
+getgenv().pingonchests = true 
+getgenv().legchest = false
+getgenv().kolhoz = true
+getgenv().kolhoztime = 40
+getgenv().norender = true
+
+
+--NEW! tradehuber settings
+getgenv().tradehuber = false
+getgenv().tradehuberspeed = 30
+getgenv().tradehuberpings = false
+
+
 
 -- // Services
 local Players = game:GetService("Players")
@@ -2072,14 +2093,14 @@ else
                                             target.Name = "Boss"
                     
                                             task.spawn(function()
-                                                while Workspace.NPCs:FindFirstChild("Boss") do task.wait()
+                                                while Workspace.NPCs:FindFirstChild("Boss") do task.wait(1)
                                                     pcall(function()
                                                         LocalPlayer.Character.HumanoidRootPart.CFrame = Positions[1] + Vector3.new(0,80,0)
                                                     end)
                                                 end
                                             end)
                     
-                                            while Workspace.NPCs:FindFirstChild("Boss") do task.wait()
+                                            while Workspace.NPCs:FindFirstChild("Boss") do task.wait(1)
                                                 pcall(function()
                                                     local args = {[1] = target.HumanoidRootPart.CFrame}
                                                     game:GetService("Players").LocalPlayer.Character:FindFirstChild("Buddha-Buddha").stomp:FireServer(unpack(args))
@@ -2105,7 +2126,7 @@ else
                             target.Name = "Boss"
             
                             task.spawn(function()
-                                while Workspace.NPCs:FindFirstChild("Boss") do task.wait()
+                                while Workspace.NPCs:FindFirstChild("Boss") do task.wait(1)
                                     pcall(function()
                                         if CanAttack == false then
                                             LocalPlayer.Character.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame + Vector3.new(0,40,0)
@@ -2114,7 +2135,7 @@ else
                                 end
                             end)
             
-                            while Workspace.NPCs:FindFirstChild("Boss") do task.wait()
+                            while Workspace.NPCs:FindFirstChild("Boss") do task.wait(1)
                                 pcall(function()
                                     if game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") < 1720 then print("ATTACKING")
                                         UltFarm(target)
@@ -2139,7 +2160,7 @@ else
                                 pcall(function()
             
                                     if game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") >= 1570 and not LocalPlayer.Character:FindFirstChild("Aura") then
-                                        while not LocalPlayer.Character:FindFirstChild("Aura") do
+                                        while not LocalPlayer.Character:FindFirstChild("Aura") do task.wait(0.1)
                                             pcall(function()
                                                 LocalPlayer.Character.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame + Vector3.new(0,60,0)
                                                 local args = {[1] = "Buddha Transformation",[2] = {[1] = true,[2] = LocalPlayer.Character.HumanoidRootPart.CFrame}}
@@ -3718,5 +3739,3 @@ else
 	end	 
 
 end
-
-
