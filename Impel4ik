@@ -2128,12 +2128,12 @@ else
             
                             while Workspace.NPCs:FindFirstChild("Boss") do task.wait(0.1)
                                 pcall(function()
-                                    if game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") < 1720 then print("ATTACKING")
+                                    if game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") < 1900 then print("ATTACKING")
                                         UltFarm(target)
                                         print("NOPE")
                                     end
             
-                                    if game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") >= 1720 then task.wait(0.1)
+                                    if game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") >= 1900 then task.wait(0.1)
                                         pcall(function()
                                             local args = {[1] = target.HumanoidRootPart.CFrame }
                                             game:GetService("Players").LocalPlayer.Character:FindFirstChild("Buddha-Buddha").stomp:FireServer(unpack(args))
@@ -2150,7 +2150,7 @@ else
             
                                 pcall(function()
             
-                                    if game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") >= 1570 and not LocalPlayer.Character:FindFirstChild("Aura") then
+                                    if game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") >= 1900 and not LocalPlayer.Character:FindFirstChild("Aura") then
                                         while not LocalPlayer.Character:FindFirstChild("Aura") do task.wait(0.1)
                                             pcall(function()
                                                 LocalPlayer.Character.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame + Vector3.new(0,60,0)
@@ -2220,7 +2220,7 @@ else
                                     if not LocalPlayer.Character:FindFirstChild("Aura") then print("I DONT HAVE AUURA")
             
                                         task.spawn(function()
-                                            while Workspace.NPCs:FindFirstChild("Boss") and not LocalPlayer.Character:FindFirstChild("Aura") and game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") < 1570 do task.wait()
+                                            while Workspace.NPCs:FindFirstChild("Boss") and not LocalPlayer.Character:FindFirstChild("Aura") and game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") < 1900 do task.wait()
                                                 pcall(function()
                                                     LocalPlayer.Character.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame + Vector3.new(0,100,0)
                                                 end)
@@ -2228,7 +2228,7 @@ else
                                         end)
             
                                         task.spawn(function()
-                                            while Workspace.NPCs:FindFirstChild("Boss") and not LocalPlayer.Character:FindFirstChild("Aura") and game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") < 1570 do task.wait()
+                                            while Workspace.NPCs:FindFirstChild("Boss") and not LocalPlayer.Character:FindFirstChild("Aura") and game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") < 1900 do task.wait()
                                                 pcall(function()
                                                     if not target.HumanoidRootPart:FindFirstChild("BodyVelocity") then
                                                         local args = {[1] = target.HumanoidRootPart.CFrame }
@@ -2238,7 +2238,7 @@ else
                                             end
                                         end)
             
-                                        while Workspace.NPCs:FindFirstChild("Boss") and not LocalPlayer.Character:FindFirstChild("Aura") and game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") < 1570 do task.wait()
+                                        while Workspace.NPCs:FindFirstChild("Boss") and not LocalPlayer.Character:FindFirstChild("Aura") and game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") < 1900 do task.wait()
                                             pcall(function()
                                                 if not target.HumanoidRootPart:FindFirstChild("BodyVelocity") then
                                                     UltFarm(target)
@@ -2406,13 +2406,13 @@ else
                 PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("25") task.wait(1)
                 firesignal(PlayerGui.Statistics.Main.Stats.FightingStyleMastery.Add.MouseButton1Click)
         
-                PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("300") task.wait(1)
+                PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("200") task.wait(1)
                 firesignal(PlayerGui.Statistics.Main.Stats.Stamina.Add.MouseButton1Click)
         
-                PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("875") task.wait(1)
+                PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("1100") task.wait(1)
                 firesignal(PlayerGui.Statistics.Main.Stats.DevilFruitMastery.Add.MouseButton1Click)
         
-                PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("525") task.wait(1)
+                PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("400") task.wait(1)
                 firesignal(PlayerGui.Statistics.Main.Stats.Defense.Add.MouseButton1Click)
             end
         
@@ -2598,7 +2598,7 @@ else
                 PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("25") task.wait(1)
                 firesignal(PlayerGui.Statistics.Main.Stats.FightingStyleMastery.Add.MouseButton1Click)
         
-                PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("300") task.wait(1)
+                PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("200") task.wait(1)
                 firesignal(PlayerGui.Statistics.Main.Stats.Stamina.Add.MouseButton1Click)
             end
         
@@ -2687,10 +2687,10 @@ else
                 LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2933.84399, 2090.44531, -13474.677)
         
         
-                PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("875") task.wait(1)
+                PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("1000") task.wait(1)
                 firesignal(PlayerGui.Statistics.Main.Stats.DevilFruitMastery.Add.MouseButton1Click)
         
-                PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("525") task.wait(1)
+                PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("400") task.wait(1)
                 firesignal(PlayerGui.Statistics.Main.Stats.Defense.Add.MouseButton1Click)
         
                 PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("25") task.wait(1)
