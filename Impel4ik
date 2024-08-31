@@ -1,24 +1,10 @@
-getgenv().VipServer = "AVCcpbec2M" --impel
-getgenv().vipcode = "" -- trade
-
---IMPEL SETTINGS
-
-getgenv().iwantyourWebhook = "" -- (вебхук ссылка) вебхук для пингов
-getgenv().autodrop = false 
-getgenv().bomjcap = 0 
-getgenv().pingonchests = true 
-getgenv().legchest = false
-getgenv().kolhoz = true
-getgenv().kolhoztime = 40
-getgenv().norender = true
-
-
---NEW! tradehuber settings
-getgenv().tradehuber = false
-getgenv().tradehuberspeed = 30
-getgenv().tradehuberpings = false
-
-
+repeat task.wait() until game:IsLoaded()
+task.spawn(function()
+  while true do task.wait(60)
+        game:GetService("VirtualInputManager"):SendMouseButtonEvent(1, 1, 0, true, game, 0)
+        game:GetService("VirtualInputManager"):SendMouseButtonEvent(1, 1, 0, false, game, 0)
+    end
+end)
 
 -- // Services
 local Players = game:GetService("Players")
@@ -52,6 +38,11 @@ switch = true
 LOBBY_PLACE_ID = 1730877806
 MAIN_GAME_PLACE_ID = 7465136166
 IMPEL_PLACE_ID = 11424731604
+local function dash()
+
+    local args = {[1] = 6,[2] = "dash"}
+    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("takestam"):FireServer(unpack(args))
+end
 
 --// Player
 local LocalPlayer = Players.LocalPlayer
@@ -2020,7 +2011,7 @@ else
                 end)
             end
         
-            local function UltFarm(targetfunc) print(111)
+            local function UltFarm(targetfunc) print(111) task.wait(0.1)
         
                 Judg = false
                 Palm = false
@@ -2082,8 +2073,8 @@ else
         
         
             local function Kill()
-                while #Workspace.NPCs:GetChildren() ~= 0 do task.wait()
-                    for _, target in pairs(Workspace.NPCs:GetChildren()) do
+                while #Workspace.NPCs:GetChildren() ~= 0 do task.wait(0.1)
+                    for _, target in pairs(Workspace.NPCs:GetChildren()) do task.wait(0.1)
         
                         for _, target in pairs(Workspace.NPCs:GetChildren()) do
                             pcall(function()
@@ -2093,14 +2084,14 @@ else
                                             target.Name = "Boss"
                     
                                             task.spawn(function()
-                                                while Workspace.NPCs:FindFirstChild("Boss") do task.wait(1)
+                                                while Workspace.NPCs:FindFirstChild("Boss") do task.wait(0.1)
                                                     pcall(function()
                                                         LocalPlayer.Character.HumanoidRootPart.CFrame = Positions[1] + Vector3.new(0,80,0)
                                                     end)
                                                 end
                                             end)
                     
-                                            while Workspace.NPCs:FindFirstChild("Boss") do task.wait(1)
+                                            while Workspace.NPCs:FindFirstChild("Boss") do task.wait(0.1)
                                                 pcall(function()
                                                     local args = {[1] = target.HumanoidRootPart.CFrame}
                                                     game:GetService("Players").LocalPlayer.Character:FindFirstChild("Buddha-Buddha").stomp:FireServer(unpack(args))
@@ -2126,7 +2117,7 @@ else
                             target.Name = "Boss"
             
                             task.spawn(function()
-                                while Workspace.NPCs:FindFirstChild("Boss") do task.wait(1)
+                                while Workspace.NPCs:FindFirstChild("Boss") do task.wait(0.1)
                                     pcall(function()
                                         if CanAttack == false then
                                             LocalPlayer.Character.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame + Vector3.new(0,40,0)
@@ -2135,14 +2126,14 @@ else
                                 end
                             end)
             
-                            while Workspace.NPCs:FindFirstChild("Boss") do task.wait(1)
+                            while Workspace.NPCs:FindFirstChild("Boss") do task.wait(0.1)
                                 pcall(function()
-                                    if game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") < 1720 then print("ATTACKING")
+                                    if game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") < 1900 then print("ATTACKING")
                                         UltFarm(target)
                                         print("NOPE")
                                     end
             
-                                    if game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") >= 1720 then
+                                    if game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") >= 1900 then task.wait(0.1)
                                         pcall(function()
                                             local args = {[1] = target.HumanoidRootPart.CFrame }
                                             game:GetService("Players").LocalPlayer.Character:FindFirstChild("Buddha-Buddha").stomp:FireServer(unpack(args))
@@ -2155,11 +2146,11 @@ else
                         if target.Name ~= "Impel Guard" and target.Name ~= "Impel Prisoner" and target.Name ~= "Snow Wolf" then
                             target.Name = "Boss"
             
-                            while workspace.NPCs:FindFirstChild("Boss") do task.wait()
+                            while workspace.NPCs:FindFirstChild("Boss") do task.wait(0.1)
             
                                 pcall(function()
             
-                                    if game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") >= 1570 and not LocalPlayer.Character:FindFirstChild("Aura") then
+                                    if game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") >= 1900 and not LocalPlayer.Character:FindFirstChild("Aura") then
                                         while not LocalPlayer.Character:FindFirstChild("Aura") do task.wait(0.1)
                                             pcall(function()
                                                 LocalPlayer.Character.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame + Vector3.new(0,60,0)
@@ -2190,10 +2181,34 @@ else
                                                 end)
                                             end
                                         end) 
+
+					task.spawn(function()
+						 while workspace.NPCs:FindFirstChild("Boss") and LocalPlayer.Character:FindFirstChild("Aura") do task.wait()
+                                            pcall(function()
+                                                if not target.HumanoidRootPart:FindFirstChild("BodyVelocity") then print("DO m1") task.wait()
+                                                    pcall(function()
+                                                        M1()
+                                                    end)
+                                                end
+                                            end)
+                                        end
+					end)
+
+					task.spawn(function()
+						 while workspace.NPCs:FindFirstChild("Boss") and LocalPlayer.Character:FindFirstChild("Aura") do task.wait()
+                                            pcall(function()
+                                                if not target.HumanoidRootPart:FindFirstChild("BodyVelocity") then print("DO m1") task.wait()
+                                                    pcall(function()
+                                                        M1()
+                                                    end)
+                                                end
+                                            end)
+                                        end
+					end)
             
                                         while workspace.NPCs:FindFirstChild("Boss") and LocalPlayer.Character:FindFirstChild("Aura") do task.wait()
                                             pcall(function()
-                                                if not target.HumanoidRootPart:FindFirstChild("BodyVelocity") then print("DO m1") wait()
+                                                if not target.HumanoidRootPart:FindFirstChild("BodyVelocity") then print("DO m1") task.wait()
                                                     pcall(function()
                                                         M1()
                                                     end)
@@ -2205,7 +2220,7 @@ else
                                     if not LocalPlayer.Character:FindFirstChild("Aura") then print("I DONT HAVE AUURA")
             
                                         task.spawn(function()
-                                            while Workspace.NPCs:FindFirstChild("Boss") and not LocalPlayer.Character:FindFirstChild("Aura") and game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") < 1570 do task.wait()
+                                            while Workspace.NPCs:FindFirstChild("Boss") and not LocalPlayer.Character:FindFirstChild("Aura") and game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") < 1900 do task.wait()
                                                 pcall(function()
                                                     LocalPlayer.Character.HumanoidRootPart.CFrame = target.HumanoidRootPart.CFrame + Vector3.new(0,100,0)
                                                 end)
@@ -2213,7 +2228,7 @@ else
                                         end)
             
                                         task.spawn(function()
-                                            while Workspace.NPCs:FindFirstChild("Boss") and not LocalPlayer.Character:FindFirstChild("Aura") and game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") < 1570 do task.wait()
+                                            while Workspace.NPCs:FindFirstChild("Boss") and not LocalPlayer.Character:FindFirstChild("Aura") and game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") < 1900 do task.wait()
                                                 pcall(function()
                                                     if not target.HumanoidRootPart:FindFirstChild("BodyVelocity") then
                                                         local args = {[1] = target.HumanoidRootPart.CFrame }
@@ -2223,9 +2238,9 @@ else
                                             end
                                         end)
             
-                                        while Workspace.NPCs:FindFirstChild("Boss") and not LocalPlayer.Character:FindFirstChild("Aura") and game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") < 1570 do task.wait()
+                                        while Workspace.NPCs:FindFirstChild("Boss") and not LocalPlayer.Character:FindFirstChild("Aura") and game.Players.LocalPlayer.Character:GetAttribute("buddhaDamage") < 1900 do task.wait()
                                             pcall(function()
-                                                if not target.HumanoidRootPart:FindFirstChild("BodyVelocity") and not target:FindFirstChild("VenomDemonModel") then
+                                                if not target.HumanoidRootPart:FindFirstChild("BodyVelocity") then
                                                     UltFarm(target)
                                                     print("NOPE")
                                                 end
@@ -2286,7 +2301,7 @@ else
                                         end
                                     end)
         
-                                    while Workspace.NPCs:FindFirstChild("Boss") do task.wait()
+                                    while Workspace.NPCs:FindFirstChild("Boss") and not target:FindFirstChild("VenomDemonModel") do task.wait()
                                         pcall(function()
                                             UltFarm(target)
                                         end)
@@ -2387,7 +2402,6 @@ else
                 end)
         
                 task.wait(5)
-        
                 PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("25") task.wait(1)
                 firesignal(PlayerGui.Statistics.Main.Stats.FightingStyleMastery.Add.MouseButton1Click)
         
@@ -2830,26 +2844,54 @@ else
         
         
             local function teleport(cframe,value)
+
+
+                pcall(function()
+                    game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity"):Destroy()
+                end)
         
-        
-        
-                for i = 1,4,1 do 
-                    pcall(function()
-                        LocalPlayer.Character.HumanoidRootPart.CFrame = cframe wait(0.1)
-                        LocalPlayer.Character.HumanoidRootPart.CFrame = cframe + Vector3.new(15,0,0) wait(0.1)
-                        LocalPlayer.Character.HumanoidRootPart.CFrame = cframe + Vector3.new(0,15,0) wait(0.1)
-                        LocalPlayer.Character.HumanoidRootPart.CFrame = cframe + Vector3.new(0,0,15) wait(0.1)
-                        LocalPlayer.Character.HumanoidRootPart.CFrame = cframe + Vector3.new(-15,0,0) wait(0.1)
-                        LocalPlayer.Character.HumanoidRootPart.CFrame = cframe + Vector3.new(0,15,0) wait(0.1)
-                        LocalPlayer.Character.HumanoidRootPart.CFrame = cframe + Vector3.new(0,0,-15) wait(0.1)
-                    end)
-                end
-                task.wait(1)
+                pcall(function()
+                    if not LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity") then
+                        local bv = Instance.new("BodyVelocity", game.Players.LocalPlayer.Character.HumanoidRootPart) 
+                        bv.velocity = Vector3.new(0,0,0) 
+                        bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
+                    end
+                end)
+
                 if value ~= true then
-                    Kill()  
-                end
-                task.wait(2)
         
+                    while game.Players.LocalPlayer.PlayerGui:FindFirstChild("Combo") do task.wait(1) end
+            
+                    while #workspace.NPCs:GetChildren() == 0 do task.wait()
+                        pcall(function()
+                            LocalPlayer.Character.HumanoidRootPart.CFrame = cframe
+                        end)
+                    end
+                
+                    Damaged = false
+
+                    task.spawn(function()
+                        while Damaged == false do task.wait()
+                            pcall(function()
+                                if game.Players.LocalPlayer.PlayerGui:FindFirstChild("Combo") then
+                                    Damaged = true 
+                                end
+                            end)
+                        end
+                    end)
+            
+                    while Damaged == false do task.wait()
+                        Kill()
+                    end
+            
+                    while #workspace.NPCs:GetChildren() ~= 0 do task.wait() end
+            
+                    while game.Players.LocalPlayer.PlayerGui:FindFirstChild("Combo") do task.wait(1) end
+
+                    task.wait(1)
+   
+                end
+                
                 pcall(function()
                     table.remove(Positions, 1)
                 end)
@@ -2960,7 +3002,7 @@ else
                     teleport(CFrame.new(10921.3, 1628.55, -20951.6))
                     teleport(CFrame.new(10576.9, 1628.55, -20995))
                     teleport(CFrame.new(9980.47, 1695.55, -21812.8))
-                    teleport(CFrame.new(10576.9, 1628.55, -20995)) ZoneChecker()
+                     ZoneChecker()
                     task.wait(5)
                     ZoneChecker()
                     task.wait(2)
@@ -3057,17 +3099,19 @@ else
                     GetFruit() 
                 end
         
+
                 task.spawn(function()
                     while true do task.wait(1)
                         pcall(function()
                             for _, effect in pairs(workspace:GetDescendants()) do
-                                if effect.Name == "Base"  then --or effect.Name == "Buildings"
+                                if effect.Name == "Base" or effect.Name == "Buildings" or effect.Name == "Tree" then
                                     effect:Destroy()
                                 end
                             end
                         end)
                     end
                 end)
+
         
         
                 task.spawn(function()
@@ -3101,6 +3145,8 @@ else
                         end)
                     end
                 end)
+
+
         
                 task.spawn(function()
                     while true do task.wait()
@@ -3130,11 +3176,14 @@ else
                         end)
                     end
                 end)
+
+
 	        task.spawn(waitforwin)
         
                 Stage1()
                 Stage2()
                 Stage3() 
+
                 task.spawn(function()
                     while true do task.wait(1)
                         pcall(function()
@@ -3146,6 +3195,7 @@ else
                         end)
                     end
                 end)
+
                 Stage4()
                 Stage5() 
             end
@@ -3159,7 +3209,7 @@ else
 
 
 		--task.wait(10)
-        task.wait(25)
+        --task.wait(25)
 
 
 		print("here you are")
@@ -3194,7 +3244,7 @@ else
              
              while game.PlaceId == MAIN_GAME_PLACE_ID do task.wait(1) print(11)
                  getgenv().speedvalue = 35 
-                 pcall(function()
+                 --pcall(function()
                      while (LocalPlayer.Character.HumanoidRootPart.Position - workspace.ImpelJoinPart.Position).Magnitude > 10 do task.wait(1)
                          Tween_Target(CFrame.new(5880.40527, 9.257061, -10213.2119))
                      end
@@ -3202,7 +3252,7 @@ else
                      wait(20)
              
                      LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5880.40527, 35.257061, -10213.2119)
-                 end)
+                 --end)
              end 
         end
 
