@@ -1214,6 +1214,9 @@ if game.PlaceId == IMPEL_PLACE_ID then
 					game:GetService("ReplicatedStorage").Events.learnStyle:FireServer(unpack(args)) task.wait(3)
 				until LocalPlayer.Backpack:FindFirstChild("BlackLeg")
 
+                PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("25") task.wait(1)
+                firesignal(PlayerGui.Statistics.Main.Stats.FightingStyleMastery.Add.MouseButton1Click)
+
 				task.wait(11)
 
 				task.spawn(function()
