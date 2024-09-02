@@ -1,3 +1,5 @@
+repeat task.wait() until game:IsLoaded()
+
 
 
 --OBFUSCATION ZONE
@@ -2167,14 +2169,71 @@ elseif game.PlaceId == MAIN_GAME_PLACE_ID then
 
 	task.spawn(TpBypass)
 
-	local function JoinImpel()
-		while game.PlaceId == 7465136166 do
-			if tonumber((game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position - CFrame.new(5880.44922, 9.257061, -10216.5342).Position).Magnitude) > 10 then
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5880.44922, 9.257061, -10216.5342)
-			end
-			task.wait(5)
-		end
-	end
+
+    local function ImpelJoin()
+
+        print("her")
+        getgenv().speedvalue = 40 -- (цифра) 40 рекомменд можно поиграться
+
+        while not workspace:FindFirstChild("Shit") do task.wait(1)
+            pcall(function()
+                local part = Instance.new("Part")
+                part.Anchored = true
+                part.Parent = workspace
+                part.CFrame = CFrame.new(5928.854, 4.96971893, -9990.8418)
+                part.Name = "Shit"
+                part.Size = Vector3.new(1,1,1)
+                task.wait(5)
+            end)
+        end
+
+        while not workspace:FindFirstChild("Shit1") do task.wait(1)
+            pcall(function()
+                local part = Instance.new("Part")
+                part.Anchored = true
+                part.Parent = workspace
+                part.CFrame = CFrame.new(6026.82275, 4.96972942, -10096.5732)
+                part.Name = "Shit1"
+                part.Size = Vector3.new(1,1,1)
+                task.wait(5)
+            end)
+        end
+
+        while not workspace:FindFirstChild("Shit2") do task.wait(1)
+            pcall(function()
+                local part = Instance.new("Part")
+                part.Anchored = true
+                part.Parent = workspace
+                part.CFrame = CFrame.new(5877.24512, 9.21971321, -10217.6465)
+                part.Name = "Shit2"
+                part.Size = Vector3.new(1,1,1)
+                task.wait(5)
+            end)
+        end
+
+        while (LocalPlayer.Character.HumanoidRootPart.Position - workspace.Shit.Position).Magnitude > 10 do task.wait()
+            Tween_Target(CFrame.new(5928.854, 4.96971893, -9990.8418),true)
+        end
+
+        while (LocalPlayer.Character.HumanoidRootPart.Position - workspace.Shit1.Position).Magnitude > 10 do task.wait()
+            Tween_Target(CFrame.new(6026.82275, 4.96972942, -10096.5732),true)
+        end
+
+        while (LocalPlayer.Character.HumanoidRootPart.Position - workspace.Shit2.Position).Magnitude > 10 do task.wait()
+            Tween_Target(CFrame.new(5877.24512, 9.21971321, -10217.6465),true)
+        end
+
+        task.spawn(function()
+            wait(120)
+            TeleportService:Teleport(LOBBY_PLACE_ID)
+        end)
+
+        while true do task.wait()
+            Tween_Target(CFrame.new(5877.24512, 9.21971321, -10217.6465),true)
+            task.wait(25)
+            LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,80,0)
+        end
+    end
 
 	--JoinImpel()
 	if getgenv().autodrop == true then
