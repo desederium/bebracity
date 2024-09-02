@@ -1,6 +1,11 @@
 repeat task.wait() until game:IsLoaded()
 
 
+getgenv().desired = 18
+getgenv().timediff = 0
+
+
+
 
 --OBFUSCATION ZONE
 
@@ -2170,7 +2175,7 @@ elseif game.PlaceId == MAIN_GAME_PLACE_ID then
 	task.spawn(TpBypass)
 
 
-    local function ImpelJoin()
+    local function JoinImpel()
 
         print("her")
         getgenv().speedvalue = 40 -- (цифра) 40 рекомменд можно поиграться
