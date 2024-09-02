@@ -902,13 +902,9 @@ if game.PlaceId == IMPEL_PLACE_ID then
 		local function TpBypass()
 			while true do task.wait()
 				pcall(function()
-					if game.Players.LocalPlayer.Character:GetAttribute("SpeedBypass") < 4999 then task.wait(5.5)
-						BlackLegSkill()
-					end
 
-					if game.Players.LocalPlayer.Character:GetAttribute("SpeedBypass") > 4999 then task.wait(15.5) 
 						BlackLegSkill()
-					end
+
 				end)
 			end
 		end
@@ -1225,9 +1221,6 @@ if game.PlaceId == IMPEL_PLACE_ID then
 					local args = {[1] = "BlackLeg"}
 					game:GetService("ReplicatedStorage").Events.learnStyle:FireServer(unpack(args)) task.wait(3)
 				until LocalPlayer.Backpack:FindFirstChild("BlackLeg")
-
-				PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("25") task.wait(1)
-				firesignal(PlayerGui.Statistics.Main.Stats.FightingStyleMastery.Add.MouseButton1Click)
 
 				task.wait(11)
 
