@@ -1,18 +1,3 @@
-getgenv().VipServer = "AVCcpbec2M" -- (код випки) випка для фарма импела
-getgenv().speedvalue = 50 -- (цифра) 40 рекомменд можно поиграться
-getgenv().vipcode = "" -- (код випки) випка на которую будет производиться автодроп миф фруктов(!нужен getgenv().autodrop = true getgenv().autodrop)
-getgenv().autodrop = false -- (true/false) автодроп миф фруктов на випку (!нужен getgenv().vipcode!)
-getgenv().bomjcap = 0 -- (колво поинтов) будет покупать мифчести до этой стоимости в поинтах
-getgenv().pingonchests = true -- (true/false) пинги на честах
-getgenv().iwantyourWebhook = "" -- (вебхук ссылка) вебхук для пингов
-getgenv().safemode = false
-getgenv().tradehuber = false
-getgenv().pingonchests = true 
-getgenv().legchest = false
-getgenv().nobomu = false
-getgenv().kolhoz = false
-getgenv().kolhoztime = 30
-getgenv().tradehuber = false
 
 
 
