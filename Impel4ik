@@ -1320,7 +1320,6 @@ if game.PlaceId == IMPEL_PLACE_ID then
 									while game:GetService("Workspace").NPCs:FindFirstChild("Boss") do task.wait()
 										pcall(function()
 											Mines(npc.HumanoidRootPart.CFrame)
-											Swipe(npc)
 										end)
 									end
 								end
