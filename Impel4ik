@@ -1043,10 +1043,11 @@ if game.PlaceId == IMPEL_PLACE_ID then
 							end
 						end)
 
-						while game:GetService("Workspace").NPCs:FindFirstChild("Boss") do task.wait(3)
+						while game:GetService("Workspace").NPCs:FindFirstChild("Boss") do task.wait()
 							pcall(function()
 								Mines(npc.HumanoidRootPart.CFrame)
 								Swipe(npc)
+                                task.wait(3)
 							end)
 						end
 					end
@@ -1087,10 +1088,11 @@ if game.PlaceId == IMPEL_PLACE_ID then
 							end
 						end)
 
-						while game:GetService("Workspace").NPCs:FindFirstChild("Boss") do task.wait(3) 
+						while game:GetService("Workspace").NPCs:FindFirstChild("Boss") do task.wait() 
 							pcall(function()
 								Mines(Positions[1])
 								Swipe(npc)
+                                task.wait(3) 
 							end)
 						end
 					end
@@ -1104,11 +1106,12 @@ if game.PlaceId == IMPEL_PLACE_ID then
 							end
 						end)
 
-						while game:GetService("Workspace").NPCs:FindFirstChild("Boss") do task.wait(1.5)
+						while game:GetService("Workspace").NPCs:FindFirstChild("Boss") do task.wait()
 							pcall(function()
 								if not npc:FindFirstChild("VenomDemonModel") then
 									if tonumber(game:GetService("ReplicatedStorage")["Stats"..game.Players.LocalPlayer.Name]:WaitForChild("Stamina").Value) > 80 then
 										Swipe(npc)
+                                        task.wait(1.5)
 									end
 									Mines(npc.HumanoidRootPart.CFrame)
 								end
@@ -1140,7 +1143,7 @@ if game.PlaceId == IMPEL_PLACE_ID then
 							end
 						end)
 
-						while game:GetService("Workspace").NPCs:FindFirstChild("Boss") do task.wait(3)
+						while game:GetService("Workspace").NPCs:FindFirstChild("Boss") do task.wait()
 							pcall(function()
 								if not npc.HumanoidRootPart:FindFirstChild("BodyVelocity") then
 									pcall(function()
@@ -1148,6 +1151,7 @@ if game.PlaceId == IMPEL_PLACE_ID then
 											Swipe(npc)
 										end
 										Mines(Positions[1])
+                                        task.wait(3)
 									end)
 								end
 							end)
