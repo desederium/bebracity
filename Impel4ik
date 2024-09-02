@@ -1253,7 +1253,7 @@ if game.PlaceId == IMPEL_PLACE_ID then
 						if v:FindFirstChild("Top") and v:FindFirstChild("Lock") and v:FindFirstChild("Model") and not game:GetService("Workspace").Effects:FindFirstChild("Bomb") then
 							for _, chest in pairs(v:GetChildren()) do
 								if chest.Name ~= "Top" and chest.Name ~= "Lock" and chest.Name ~= "Model" and chest.Name ~= "highlightPrompt" and 
-									(workspace.ChestCheck.Position - chest.Position).Magnitude < 1000 then 
+									(workspace.ChestCheck.Position - chest.Position).Magnitude < 4000 then 
                                     task.spawn(function()
                                     for i=1,3,1 do 
                                         dash()
