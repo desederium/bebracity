@@ -1400,7 +1400,7 @@ if game.PlaceId == IMPEL_PLACE_ID then
 		end
 
 		local function KillVera()
-			while not PlayerGui.ImpelDownUI.Info.Timers:FindFirstChild("Floor 1: Crimson Hell") end
+			while not PlayerGui.ImpelDownUI.Info.Timers:FindFirstChild("Floor 1: Crimson Hell") do task.wait(1)
 
 			while not Workspace.Effects:FindFirstChild("Key") do task.wait()
 				pcall(function()
