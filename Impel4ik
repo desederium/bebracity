@@ -970,13 +970,12 @@ if game.PlaceId == IMPEL_PLACE_ID then
 		end
 
 		local function Swipe(target)
-			pcall(function()
-					pcall(function()
-						local args3 = {[1] = target.HumanoidRootPart.CFrame + Vector3.new(0,-2,0)}
-						game:GetService("ReplicatedStorage")[game.Players.LocalPlayer.Name.."|ServerScriptService.Skills.Skills.SkillContainer.Bomb-Bomb.Explosive Swipe"]:FireServer(unpack(args3))
-					end)
-				end
-			end)
+
+            pcall(function()
+                local args3 = {[1] = target.HumanoidRootPart.CFrame + Vector3.new(0,-2,0)}
+                game:GetService("ReplicatedStorage")[game.Players.LocalPlayer.Name.."|ServerScriptService.Skills.Skills.SkillContainer.Bomb-Bomb.Explosive Swipe"]:FireServer(unpack(args3))
+            end)
+
 		end
 
 		PrevPositions = {}
