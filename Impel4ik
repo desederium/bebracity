@@ -995,11 +995,10 @@ if game.PlaceId == IMPEL_PLACE_ID then
 
 
 
-											--while (npc.HumanoidRootPart.Position - LocalPlayer.Character.Position).Magnitude < 250 do task.wait()
+											while (npc.HumanoidRootPart.Position - LocalPlayer.Character.Position).Magnitude > 300 do task.wait()
 											LocalPlayer.Character.HumanoidRootPart.CFrame = npc.HumanoidRootPart.CFrame + Vector3.new(0,100,0) 
-											--end 
-
-											task.wait(1)
+											end 
+                                           
 
 											Mines(npc.HumanoidRootPart.CFrame) 
 											Swipe(npc) wait(.3)
