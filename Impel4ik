@@ -1097,7 +1097,7 @@ if game.PlaceId == IMPEL_PLACE_ID then
 					end
 
 					if npc.Name == "Warden of Impel Down, Vera" then
-						npc.Name = "Boss"
+						npc.Name = "Boss" task.wait(10)
 
 						task.spawn(function()
 							while game:GetService("Workspace").NPCs:FindFirstChild("Boss") do task.wait()
