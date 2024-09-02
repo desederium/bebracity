@@ -2204,19 +2204,7 @@ elseif game.PlaceId == MAIN_GAME_PLACE_ID then
 		end)
 	end
 
-	if getgenv().checkblegleg == true then
-		if not game.Players.LocalPlayer.Backpack:FindFirstChild("BlackLeg") then
-			repeat task.wait(3)
-				local args = {[1] = "BlackLeg"}
-				game:GetService("ReplicatedStorage").Events.learnStyle:FireServer(unpack(args))
-			until game.Players.LocalPlayer.Backpack:FindFirstChild("BlackLeg")
 
-			game.Players.LocalPlayer.PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("25") task.wait(1)
-			firesignal(game.Players.LocalPlayer.PlayerGui.Statistics.Main.Stats.FightingStyleMastery.Add.MouseButton1Click)
-		else
-			print("you have blackleg")
-		end
-	end
 
 	task.wait(5)
 
