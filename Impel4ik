@@ -2031,6 +2031,7 @@ if game.PlaceId == IMPEL_PLACE_ID  then
 
 	ImpelVote()
 	KillWarden()
+getgenv().speedvalue = 50
 	Bomu()
 	Stage1()
 
