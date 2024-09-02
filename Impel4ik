@@ -22,7 +22,10 @@ local koshara = "https://media.discordapp.net/attachments/1018544915090784336/12
 
 getgenv().safemode = true
 
-
+local function dash()
+    local args = {[1] = 6,[2] = "dash"}
+    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("takestam"):FireServer(unpack(args))
+end
 
 --// Place Id's
 
@@ -1433,7 +1436,7 @@ if game.PlaceId == IMPEL_PLACE_ID then
 			end
 
 			while (LocalPlayer.Character.HumanoidRootPart.Position - workspace.Stage1CheckEnd.Position).Magnitude > 10 do task.wait()
-				for i = 1, 20, 1 do task.wait(0.1)
+				for i = 1, 20, 1 do task.wait(0.1) dash()
 					LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2680.07764, 2075.70874, -15511.675)
 				end
 			end
