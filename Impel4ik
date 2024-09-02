@@ -1087,21 +1087,13 @@ if game.PlaceId == IMPEL_PLACE_ID then
 			game:GetService("ReplicatedStorage").Events.Skill:InvokeServer(unpack(args))
 		end
 
-        local function dash()
-            local args = {[1] = 6,[2] = "dash"}
-            game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("takestam"):FireServer(unpack(args))
-        end
 
 		local function TpBypass()
 			while true do task.wait()
 				pcall(function()
 					if game.Players.LocalPlayer.Character:GetAttribute("SpeedBypass") < 4999 then task.wait(5.5)
 						BlackLegSkill()
-					end
-
-					if game.Players.LocalPlayer.Character:GetAttribute("SpeedBypass") > 4999 then task.wait(5.5) 
-						Dash()
-					end
+                    end
 				end)
 			end
 		end
