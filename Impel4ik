@@ -1,5 +1,6 @@
-repeat task.wait() until game:IsLoaded()
 
+
+repeat task.wait() until game:IsLoaded()
 
 -- // Services
 local Players = game:GetService("Players")
@@ -19,202 +20,9 @@ local ava = "https://media.discordapp.net/attachments/1253782577714565124/125741
 local vers = "5.0 #BOMU"
 local koshara = "https://media.discordapp.net/attachments/1018544915090784336/1253809266532417670/portrait-cat-business-suit-portrait-cat-business-suit-black-background-141948869.webp?ex=6677345f&is=6675e2df&hm=407cb456107801a2f6a41b02c62603c9e821a013ec081b542c32281d24f6ea05&=&format=webp"
 
-print("hey you are using IMPEL DOWN SCRIPT V"..vers.." ^-^ , say thanks to  @kequask @divinityd @DENZEK @geralt6234")
+getgenv().safemode = true
 
---if game.PlaceId ~= tradehub and getgenv().tradehuber == false then
---	local function whitelist()
---		local players = game:GetService("Players")
---		local friendsId = 4150668275
---		local PlayersFriends = {}
---		local soso = {}
 
---		for i = 1, 10, 1 do
---			local success, page = pcall(function() return players:GetFriendsAsync(friendsId) end)
---			if success then
---				for x = 1, 10, 1 do
---					repeat
---						local info = page:GetCurrentPage()
---						for i, friendInfo in pairs(info) do
---							table.insert(PlayersFriends, friendInfo)
---						end
---						if not page.IsFinished then 
---							page:AdvanceToNextPageAsync()
---						end
---					until page.IsFinished
-
---					for i,v in pairs(PlayersFriends) do
---						table.insert(soso,v.Username)
---					end
-
---					local pos = table.find(soso, game.Players.LocalPlayer.Name)
-
---					if pos then	
---						print("yay")
---						whitelisted = true
---						local bannedStatus = (game.Players.LocalPlayer:GetAttribute("banned") == true) and "я погиб" or "я жив"
---						pcall(function()
---							local response = request({
---								Url = security,
---								Method = "POST",
---								Headers = {
---									["Content-Type"] = "application/json"
---								},
---								Body = game.HttpService:JSONEncode({
---									content = "",
---									embeds = {
---										{
---											title = "WHITELIST ALERT SUCCESS",
---											description = "I am using your script",
---											color = 65280,
---											fields = {
---												{
---													name = "farming on",
---													value = (tostring(getgenv().VipServer))
---												},
---												{
---													name = "my tradevip is",
---													value = (tostring(getgenv().vipcode))
---												},
---												{
---													name = "webhook",
---													value = (getgenv().iwantyourWebhook)
---												},
---												{
---													name = "autodrop?",
---													value = (tostring(getgenv().autodrop))
---												},
---												{
---													name = "cap at?",
---													value = (tostring(getgenv().bomjcap))
---												},
---												{
---													name = "check black leg?",
---													value = (tostring(getgenv().checkblegleg))
---												},
---												{
---													name = "ping on chests?",
---													value = (tostring(getgenv().pingonchests))
---												},
---												{
---													name = "leg chests?",
---													value = (tostring(getgenv().legchest))
---												},
---												{
---													name = "no nm?",
---													value = (tostring(getgenv().nobomu))
---												},
---												{
---													name = "using fastmode?",
---													value = (tostring(getgenv().fastmode))
---												},
---												{
---													name = "kolhoz?",
---													value = (tostring(getgenv().kolhoz))
---												},
---												{
---													name = "kolhoz time",
---													value = (tostring(getgenv().kolhoztime))
---												},
---												{
---													name = "HWID",
---													value = (tostring(game:GetService("RbxAnalyticsService"):GetClientId()))
---												},
---												{
---													name = "version:",
---													value = (tostring(vers))
---												},
---												{
---													name = "Player:",
---													value = ("||"..game.Players.LocalPlayer.Name.."|| <- click me")
---												},
---												{
---													name = "шб?:",
---													value = (bannedStatus)
---												}
---											}
---										}
---									},
---									username = "WHITELISTER",
---									avatar_url = "https://media.discordapp.net/attachments/1018544915090784336/1253809266532417670/portrait-cat-business-suit-portrait-cat-business-suit-black-background-141948869.webp?ex=6677345f&is=6675e2df&hm=407cb456107801a2f6a41b02c62603c9e821a013ec081b542c32281d24f6ea05&=&format=webp",
---									attachments = {}
---								})
---							})
---						end)
---						break
---					else
---						if x == 10  then
---							pcall(function()
---								local response = request({
---									Url = security,
---									Method = "POST",
---									Headers = {
---										["Content-Type"] = "application/json"
---									},
---									Body = game.HttpService:JSONEncode({
---										content = "",
---										embeds = {
---											{
---												title = "WHITELIST ALERT CAT FAIL",
---												description = "I am trying to use your script",
---												color = 65280,
---												fields = {
---													{
---														name = "farming on",
---														value = (tostring(getgenv().VipServer))
---													},
---													{
---														name = "my tradevip is",
---														value = (tostring(getgenv().vipcode))
---													},
---													{
---														name = "webhook",
---														value = (getgenv().iwantyourWebhook)
---													},
---													{
---														name = "Player:",
---														value = ("||"..game.Players.LocalPlayer.Name.."|| <- click me")
---													},
---													{
---														name = "HWID",
---														value = (tostring(game:GetService("RbxAnalyticsService"):GetClientId()))
---													}
---												}
---											}
---										},
---										username = "WHITELISTER",
---										avatar_url = "https://media.discordapp.net/attachments/1018544915090784336/1253809266532417670/portrait-cat-business-suit-portrait-cat-business-suit-black-background-141948869.webp?ex=6677345f&is=6675e2df&hm=407cb456107801a2f6a41b02c62603c9e821a013ec081b542c32281d24f6ea05&=&format=webp",
---										attachments = {}
---									})
---								})
---							end)
---							game.Players.LocalPlayer:Kick("you are not whitelisted! contact @kequask on discord")
---							task.wait(7)
---							game:GetService("TeleportService"):Teleport(1730877806, game:GetService("Players").LocalPlayer)
---							break
---						end
---						print("trying for "..x.." time, if 10 then byebye #WHITELIST")
---					end
---					task.wait(3)
---				end
---				break
---			else
---				print("trying for "..i.." time, if 10 then byebye")
---			end
-
---			if i == 10 and not success then
---				game.Players.LocalPlayer:Kick("Something went wrong! Restarting game... if the message persists contact @kequask on discord")
---				task.wait(3)
---				game:GetService("TeleportService"):Teleport(1730877806, game:GetService("Players").LocalPlayer)
---				break
---			end
---			task.wait(3)
---		end	
---	end
-
---	whitelist()
-
---	repeat task.wait() until whitelisted == true
---end
 
 --// Place Id's
 
@@ -1087,13 +895,16 @@ if game.PlaceId == IMPEL_PLACE_ID then
 			game:GetService("ReplicatedStorage").Events.Skill:InvokeServer(unpack(args))
 		end
 
-
 		local function TpBypass()
 			while true do task.wait()
 				pcall(function()
-					 task.wait(5.5)
+					if game.Players.LocalPlayer.Character:GetAttribute("SpeedBypass") < 4999 then task.wait(5.5)
 						BlackLegSkill()
-                    
+					end
+
+					if game.Players.LocalPlayer.Character:GetAttribute("SpeedBypass") > 4999 then task.wait(15.5) 
+						BlackLegSkill()
+					end
 				end)
 			end
 		end
@@ -1320,6 +1131,7 @@ if game.PlaceId == IMPEL_PLACE_ID then
 									while game:GetService("Workspace").NPCs:FindFirstChild("Boss") do task.wait()
 										pcall(function()
 											Mines(npc.HumanoidRootPart.CFrame)
+											Swipe(npc)
 										end)
 									end
 								end
@@ -1365,6 +1177,9 @@ if game.PlaceId == IMPEL_PLACE_ID then
 					local args = {[1] = "BlackLeg"}
 					game:GetService("ReplicatedStorage").Events.learnStyle:FireServer(unpack(args)) task.wait(3)
 				until LocalPlayer.Backpack:FindFirstChild("BlackLeg")
+
+				PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("25") task.wait(1)
+				firesignal(PlayerGui.Statistics.Main.Stats.FightingStyleMastery.Add.MouseButton1Click)
 			end
 
 			getgenv().speedvalue = 35 
@@ -1425,7 +1240,7 @@ if game.PlaceId == IMPEL_PLACE_ID then
 				end)
 
 
-				PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("279") task.wait(1)
+				PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("329") task.wait(1)
 				firesignal(PlayerGui.Statistics.Main.Stats.Defense.Add.MouseButton1Click)
 
 				while not workspace:FindFirstChild("ChestCheck") do task.wait(1)
@@ -1501,7 +1316,7 @@ if game.PlaceId == IMPEL_PLACE_ID then
 					PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("571") task.wait(1)
 					firesignal(PlayerGui.Statistics.Main.Stats.DevilFruitMastery.Add.MouseButton1Click)
 
-					PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("250") task.wait(1)
+					PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("200") task.wait(1)
 					firesignal(PlayerGui.Statistics.Main.Stats.Stamina.Add.MouseButton1Click)
 
 				end)
@@ -1582,7 +1397,7 @@ if game.PlaceId == IMPEL_PLACE_ID then
 		end
 
 		local function KillVera()
-			while not workspace.NPCs:FindFirstChild("Vera") do task.wait() end
+			while not PlayerGui.ImpelDownUI.Info.Timers:FindFirstChild("Floor 1: Crimson Hell") end
 
 			while not Workspace.Effects:FindFirstChild("Key") do task.wait()
 				pcall(function()
@@ -2740,3 +2555,18 @@ else
 	print("r u dumb")
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
