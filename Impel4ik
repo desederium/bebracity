@@ -1810,6 +1810,8 @@ if game.PlaceId == IMPEL_PLACE_ID  then
 
 	local function teleport(cframe,high,wait)
 
+        while game.Players.LocalPlayer.PlayerGui:FindFirstChild("Combo") do task.wait(1) end
+
 		pcall(function()
 			game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity"):Destroy()
 		end)
@@ -1844,7 +1846,23 @@ if game.PlaceId == IMPEL_PLACE_ID  then
 			task.wait(5)
 		end
 
-		Kill()
+        Damaged = false
+
+        task.spawn(function()
+            while Damaged == false do task.wait()
+                pcall(function()
+                    if game.Players.LocalPlayer.PlayerGui:FindFirstChild("Combo") then
+                        Damaged = true 
+                    end
+                end)
+            end
+        end)
+
+        while Damaged == false do task.wait()
+            Kill()
+        end
+
+
 		table.remove(Positions, 1)
 
 		while #workspace.NPCs:GetChildren() ~= 0 do task.wait() end
