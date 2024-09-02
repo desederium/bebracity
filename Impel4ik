@@ -1109,7 +1109,7 @@ if game.PlaceId == IMPEL_PLACE_ID then
 						while game:GetService("Workspace").NPCs:FindFirstChild("Boss") do task.wait()
 							pcall(function()
 								if not npc:FindFirstChild("VenomDemonModel") then
-									if tonumber(game:GetService("ReplicatedStorage")["Stats"..game.Players.LocalPlayer.Name]:WaitForChild("Stamina").Value) > 80 then
+									if tonumber(game:GetService("ReplicatedStorage")["Stats"..game.Players.LocalPlayer.Name]:WaitForChild("Stamina").Value) > 0 then
 										Swipe(npc)
                                         task.wait(1.5)
 									end
