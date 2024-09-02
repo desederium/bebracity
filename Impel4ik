@@ -1675,6 +1675,18 @@ if game.PlaceId == IMPEL_PLACE_ID then
 			ImpelVote()
 			task.spawn(waitforwin)
 			task.spawn(Blockloop)
+            local function BomuStack()
+                while true do task.wait(3)
+                    pcall(function()
+                        if tonumber(game:GetService("ReplicatedStorage")["Stats"..game.Players.LocalPlayer.Name]:WaitForChild("Stamina").Value) > 80 then
+                        local args = {[1] = "Explosive Swipe",[2] = {["cf"] = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame}}
+                        game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Skill"):InvokeServer(unpack(args))
+                        end
+                    end)
+                end
+            end
+
+            task.spawn(BomuStack)
 			KillVera()
 			GetKey()
 			GetBomu()
@@ -1716,18 +1728,7 @@ if game.PlaceId == IMPEL_PLACE_ID then
 			end)
 
             
-            local function BomuStack()
-                while true do task.wait(3)
-                    pcall(function()
-                        if tonumber(game:GetService("ReplicatedStorage")["Stats"..game.Players.LocalPlayer.Name]:WaitForChild("Stamina").Value) > 80 then
-                        local args = {[1] = "Explosive Swipe",[2] = {["cf"] = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame}}
-                        game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Skill"):InvokeServer(unpack(args))
-                        end
-                    end)
-                end
-            end
-
-            task.spawn(BomuStack)
+  
 
 
 			Stage2()
