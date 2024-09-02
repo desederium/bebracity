@@ -43,6 +43,87 @@ local PlayerGui = LocalPlayer.PlayerGui
 
 print("hey you are using IMPEL DOWN SCRIPT V"..vers.." ^-^ , say thanks to  @kequask @divinityd @DENZEK @geralt6234")
 
+local function Tween_Target(target,wait,high,mines, speedreduce)
+
+		repeat task.wait() until game.Players.LocalPlayer.Character
+
+		repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")	
+
+		local dest
+
+		if typeof(target) == "Vector3" then
+			dest = target
+		elseif typeof(target) == "Instance" and target.Position or typeof(target) == "CFrame" and target.Position then
+			dest = target.Position
+		else
+			return
+		end
+		if not LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity") then
+			local bv = Instance.new("BodyVelocity", game.Players.LocalPlayer.Character.HumanoidRootPart) 
+			bv.velocity = Vector3.new(0,0,0) 
+			bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
+		end
+
+		local speed = tonumber((target.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude)
+		local time = speed/getgenv().speedvalue
+		local Tween_info = TweenInfo.new(time, Enum.EasingStyle.Linear)
+
+		local tween
+		if speedreduce ~= true then
+			if high and high > 1 and mines == nil then
+				tween = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, Tween_info, {CFrame = CFrame.new(Vector3.new(target.Position.X, target.Position.Y+high, target.Position.Z))})
+			elseif high and high > 1 and mines == true then
+				tween = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, Tween_info, {CFrame = CFrame.new(Vector3.new(target.Position.X, 0+high, target.Position.Z))})
+			elseif high and high == 0 then
+				local dis = tonumber((Vector3.new(target.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y, target.Position.Z) - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude)
+				local t = dis/getgenv().speedvalue
+				tween = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(t, Enum.EasingStyle.Linear), {CFrame = CFrame.new(Vector3.new(target.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y, target.Position.Z))})
+			elseif not high then
+				tween = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, Tween_info, {CFrame = CFrame.new(Vector3.new(target.Position.X, target.Position.Y, target.Position.Z))})
+			end
+		else
+			if high and high > 1 and mines == nil then
+				tween = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, Tween_info, {CFrame = CFrame.new(Vector3.new(target.Position.X, target.Position.Y+high, target.Position.Z))})
+			elseif high and high > 1 and mines == true then
+				tween = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, Tween_info, {CFrame = CFrame.new(Vector3.new(target.Position.X, 0+high, target.Position.Z))})
+			elseif high and high == 0 then
+				local dis = tonumber((Vector3.new(target.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y, target.Position.Z) - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude)
+				local t = dis/20
+				tween = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(t, Enum.EasingStyle.Linear), {CFrame = CFrame.new(Vector3.new(target.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y, target.Position.Z))})
+			elseif not high then
+				tween = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, Tween_info, {CFrame = CFrame.new(Vector3.new(target.Position.X, target.Position.Y, target.Position.Z))})
+			end
+		end
+
+		tween.Name = ("teleport")
+		tween.Parent = fold
+
+		DoTween = true
+
+		tween:Play()
+		if speedreduce ~= true then
+			if wait == true and not high then
+				task.wait(Tween_info.Time)
+			elseif high and high == 0 then
+				local dis = tonumber((Vector3.new(target.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y, target.Position.Z) - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude)
+				local t = dis/getgenv().speedvalue
+				task.wait(t)
+			elseif wait == true and high and high ~= 0 then
+				task.wait(Tween_info.Time)
+			end
+		else
+			if wait == true and not high then
+				task.wait(Tween_info.Time)
+			elseif high and high == 0 then
+				local dis = tonumber((Vector3.new(target.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y, target.Position.Z) - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude)
+				local t = dis/20
+				task.wait(t)
+			elseif wait == true and high and high ~= 0 then
+				task.wait(Tween_info.Time)
+			end
+		end
+	end
+
 
 if game.PlaceId == IMPEL_PLACE_ID  then
 
