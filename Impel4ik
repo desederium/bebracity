@@ -1009,7 +1009,7 @@ if game.PlaceId == IMPEL_PLACE_ID then
 												LocalPlayer.Character.HumanoidRootPart.CFrame = PrevPositions[1] + Vector3.new(0,80,0)
 											end
 
-											task.wait(3)
+											task.wait(6)
 
 										end)
 									end
@@ -1170,9 +1170,6 @@ if game.PlaceId == IMPEL_PLACE_ID then
 					local args = {[1] = "BlackLeg"}
 					game:GetService("ReplicatedStorage").Events.learnStyle:FireServer(unpack(args)) task.wait(3)
 				until LocalPlayer.Backpack:FindFirstChild("BlackLeg")
-
-				PlayerGui.Statistics.Main.TopOptions.Base.Input.Text = ("25") task.wait(1)
-				firesignal(PlayerGui.Statistics.Main.Stats.FightingStyleMastery.Add.MouseButton1Click)
 			end
 
 			getgenv().speedvalue = 35 
