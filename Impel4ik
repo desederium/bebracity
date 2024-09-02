@@ -971,12 +971,6 @@ if game.PlaceId == IMPEL_PLACE_ID then
 
 		local function Swipe(target)
 			pcall(function()
-				if tonumber(game:GetService("ReplicatedStorage")["Stats"..game.Players.LocalPlayer.Name]:WaitForChild("Stamina").Value) > 80 then
-					pcall(function()
-						local args = {[1] = "Explosive Swipe",[2] = {["cf"] = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame}}
-						game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Skill"):InvokeServer(unpack(args))
-					end)
-
 					pcall(function()
 						local args3 = {[1] = target.HumanoidRootPart.CFrame + Vector3.new(0,-2,0)}
 						game:GetService("ReplicatedStorage")[game.Players.LocalPlayer.Name.."|ServerScriptService.Skills.Skills.SkillContainer.Bomb-Bomb.Explosive Swipe"]:FireServer(unpack(args3))
@@ -1714,6 +1708,21 @@ if game.PlaceId == IMPEL_PLACE_ID then
 					end)
 				end
 			end)
+
+            
+            local function BomuStack()
+                while true do task.wait(3)
+                    pcall(function()
+                        if tonumber(game:GetService("ReplicatedStorage")["Stats"..game.Players.LocalPlayer.Name]:WaitForChild("Stamina").Value) > 80 then
+                        local args = {[1] = "Explosive Swipe",[2] = {["cf"] = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame}}
+                        game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Skill"):InvokeServer(unpack(args))
+                        end
+                    end)
+                end
+            end
+
+            task.spawn(BomuStack)
+
 
 			Stage2()
 			Stage3()
