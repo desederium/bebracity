@@ -1,7 +1,7 @@
 
 
 repeat task.wait() until game:IsLoaded()
-
+print(1)
 -- // Services
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
