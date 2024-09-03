@@ -1243,7 +1243,7 @@ if game.PlaceId == IMPEL_PLACE_ID  then
 						while game:GetService("Workspace").NPCs:FindFirstChild("Boss") do task.wait() print("killl bosses")
 							pcall(function()
 								print("boses")
-								LocalPlayer.Character.HumanoidRootPart.CFrame = Positions[1] + Vector3.new(0,80,0)
+								LocalPlayer.Character.HumanoidRootPart.CFrame = Positions[1] + Vector3.new(0,70,0)
 								MinesTest()
 								MinesTp()
 							end)
