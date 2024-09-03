@@ -1585,7 +1585,7 @@ if game.PlaceId == IMPEL_PLACE_ID  then
 		end
 
 		NoClipCam() 
-getgenv().speedvalue = 50
+getgenv().speedvalue = 25
 		repeat task.wait(1)
 			local succ, err = pcall(function()
 				CFrame.lookAt(game.Workspace.CurrentCamera.CFrame.Position, Workspace.Effects.Key.Key.CFrame.Position)
@@ -1594,7 +1594,7 @@ getgenv().speedvalue = 50
 				print(err)
 			end
 			pcall(function()
-				Tween_Target(Workspace.Effects.Key.Key,true,5, nil, true)
+				Tween_Target(Workspace.Effects.Key.Key,true,5)
 				if Workspace.Effects.Key:FindFirstChild("highlightPrompt") then
 					fireproximityprompt(Workspace.Effects.Key.Key.ProximityPrompt)
 				end
