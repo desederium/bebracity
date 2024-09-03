@@ -1585,7 +1585,7 @@ if game.PlaceId == IMPEL_PLACE_ID  then
 		end
 
 		NoClipCam() 
-getgenv().speedvalue = 25
+
 		repeat task.wait(1)
 			local succ, err = pcall(function()
 				CFrame.lookAt(game.Workspace.CurrentCamera.CFrame.Position, Workspace.Effects.Key.Key.CFrame.Position)
