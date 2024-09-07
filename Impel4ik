@@ -5,7 +5,15 @@ getgenv().desired = 18
 getgenv().timediff = 0
 
 
-
+local connection = game:GetService("Workspace").Effects.ChildAdded:Connect(function(descendant)
+    pcall(function()
+        if descendant.Name == ("exploson") then task.wait()
+            task.spawn(function()
+                descendant:Destroy()
+            end)
+        end
+    end)
+end)
 
 --OBFUSCATION ZONE
 
