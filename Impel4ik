@@ -1096,6 +1096,8 @@ if game.PlaceId == IMPEL_PLACE_ID  then
 										pcall(function()
 											local args3 = {[1] =  npc.HumanoidRootPart.CFrame + Vector3.new(0,-2,0)}
 											game:GetService("ReplicatedStorage")[game.Players.LocalPlayer.Name.."|ServerScriptService.Skills.Skills.SkillContainer.Bomb-Bomb.Explosive Swipe"]:FireServer(unpack(args3))
+											local args = {[1] = "Explosive Mines",[2] = {["cf"] = npc.HumanoidRootPart.CFrame + Vector3.new(0,-2,0) ,["rad"] = 35}}
+											game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Skill"):InvokeServer(unpack(args))
 										end)
 									end
 								end
@@ -1116,6 +1118,8 @@ if game.PlaceId == IMPEL_PLACE_ID  then
 										pcall(function()
 											local args3 = {[1] =  npc.HumanoidRootPart.CFrame + Vector3.new(0,-2,0)}
 											game:GetService("ReplicatedStorage")[game.Players.LocalPlayer.Name.."|ServerScriptService.Skills.Skills.SkillContainer.Bomb-Bomb.Explosive Swipe"]:FireServer(unpack(args3))
+											local args = {[1] = "Explosive Mines",[2] = {["cf"] = npc.HumanoidRootPart.CFrame + Vector3.new(0,-2,0) ,["rad"] = 35}}
+											game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Skill"):InvokeServer(unpack(args))
 										end)
 									end
 								end
