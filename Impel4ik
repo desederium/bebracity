@@ -2174,10 +2174,53 @@ if game.PlaceId == IMPEL_PLACE_ID  then
     end
     end)
 
-	--ImpelVote()
-	--KillWarden()
+	ImpelVote()
+	KillWarden()
 getgenv().speedvalue = 50
 	Bomu()
+
+
+        task.spawn(function()
+            while true do task.wait(1)
+                pcall(function()
+                    for _, effect in pairs(workspace:GetDescendants()) do
+                        if effect.Name == "Base" or effect.Name == "Buildings" or effect.Name == "Tree" then
+                            effect:Destroy()
+                        end
+                    end
+                end)
+            end
+        end)
+  task.spawn(function()
+            while true do task.wait()
+                pcall(function()
+                    for _, effect in pairs(workspace.Terrain:GetChildren()) do
+                        effect:Destroy()
+                    end
+                end)
+            
+                pcall(function()
+                    for _, effect in pairs(workspace.Camera:GetChildren()) do
+                        effect:Destroy()
+                    end
+                end)
+            
+            
+                pcall(function()
+                    for _, effect in pairs(game:GetService("Lighting"):GetChildren()) do
+                        effect:Destroy()
+                    end
+                end)
+            
+                pcall(function()
+                    if workspace.Effects:FindFirstChild("Right") then
+                        workspace.Effects.Right:Destroy()
+                    end
+                end)
+            end
+        end)
+
+
 	Stage1()
 
 	task.spawn(function() --superantiafk
