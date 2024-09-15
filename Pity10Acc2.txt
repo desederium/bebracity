@@ -167,7 +167,7 @@ FoundLucky = false
 local function CheckLucky()
     for _, v in pairs(Workspace:GetDescendants()) do
         if v.Name == "ProximityPrompt" and v.ObjectText == "Lucky Arrow" then
-            WebHookGot2()
+            --WebHookGot2()
             FoundLucky = true
         end
     end
