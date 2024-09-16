@@ -123,6 +123,7 @@ local function Hop()
 
     ID = Servers[math.random(1,#Servers)]
     TeleportService:TeleportToPlaceInstance(MAIN_GAME_PLACE_ID, ID)
+    task.wait(10)
 end
 
 
@@ -155,9 +156,7 @@ local function TPBypass()
 end
 
 task.spawn(function()
-    while true do task.wait(1)
-        TPBypass()
-    end
+    TPBypass()
 end)
 
 
