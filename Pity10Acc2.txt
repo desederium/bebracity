@@ -84,33 +84,6 @@ local function skipScreen() -- AUTOSKIP
     end 
 end 
 
---[[
-local function Hop()
-    ID = nil
-    local Servers = {}
-    local Got = false
-    local Url = "https://games.roblox.com/v1/games/2809202155/servers/Public?sortOrder=Desc&limit=100" 
-    local Server = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/2809202155/servers/Public?sortOrder=Asc&limit=100")) 
-
-
-    while Server.nextPageCursor ~= nil do task.wait() 
-        if Server.data then 
-            for i , server1 in ipairs(Server.data) do 
-                if server1.playing < 17 then
-                    Servers[#Servers+1] = server1.id
-                end
-            end 
-        end 
-        Server = game:GetService("HttpService"):JSONDecode(game:HttpGet(Url.."&cursor="..tostring(Server.nextPageCursor))) 
-    end 
-    
-
-    ID = Servers[math.random(1,#Servers)]
-    TeleportService:TeleportToPlaceInstance(MAIN_GAME_PLACE_ID, ID)
-
-end
-
-]]--
 
 
 local function Hop()
@@ -125,6 +98,7 @@ local function Hop()
     TeleportService:TeleportToPlaceInstance(MAIN_GAME_PLACE_ID, ID)
     task.wait(10)
 end
+
 
 
 local function ItemBypass()
@@ -166,7 +140,7 @@ FoundLucky = false
 local function CheckLucky()
     for _, v in pairs(Workspace:GetDescendants()) do
         if v.Name == "ProximityPrompt" and v.ObjectText == "Lucky Arrow" then
-            --WebHookGot2()
+            WebHookGot2()
             FoundLucky = true
         end
     end
@@ -232,3 +206,9 @@ CheckLucky()
 if FoundLucky == true then
     GetLucky()
 end
+
+
+
+
+
+
